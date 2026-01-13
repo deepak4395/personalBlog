@@ -26,6 +26,26 @@ export class ConfigLoader {
   }
 
   /**
+   * Find the workspace root by looking for pnpm-workspace.yaml
+   */
+  private findWorkspaceRoot(): string {
+    let currentDir = process.cwd();
+    const maxLevels = 5; // Safety limit
+    
+    for (let i = 0; i < maxLevels; i++) {
+      if (existsSync(resolve(currentDir, 'pnpm-workspace.yaml'))) {
+        return currentDir;
+      }
+      const parentDir = resolve(currentDir, '..');
+      if (parentDir === currentDir) break; // Reached filesystem root
+      currentDir = parentDir;
+    }
+    
+    // Fallback to current directory
+    return process.cwd();
+  }
+
+  /**
    * Load agents configuration from YAML file
    */
   loadAgentsConfig(configPath: string = './config/agents.yaml'): AgentsConfig {
@@ -34,11 +54,13 @@ export class ConfigLoader {
     }
 
     try {
-      const fullPath = resolve(process.cwd(), configPath);
+      const workspaceRoot = this.findWorkspaceRoot();
+      const fullPath = resolve(workspaceRoot, configPath);
       
       if (!existsSync(fullPath)) {
         logger.error(`Agents config file not found at: ${fullPath}`);
         logger.error(`Current working directory: ${process.cwd()}`);
+        logger.error(`Workspace root: ${workspaceRoot}`);
         throw new Error(`Agents config file not found: ${fullPath}`);
       }
 
@@ -68,11 +90,12 @@ export class ConfigLoader {
     try {
       // Get secrets path from agents config or use default
       const agentsConfig = this.agentsConfig || this.loadAgentsConfig();
+      const workspaceRoot = this.findWorkspaceRoot();
       
       // Try unencrypted first (GitHub Actions), then encrypted (local)
-      const unencryptedPath = resolve(process.cwd(), './config/secrets.yaml');
+      const unencryptedPath = resolve(workspaceRoot, './config/secrets.yaml');
       const encryptedPath = resolve(
-        process.cwd(),
+        workspaceRoot,
         secretsPath || agentsConfig.secretsFile || './config/secrets.enc.yaml'
       );
       
