@@ -156,6 +156,11 @@ jobs:
           cp -r website/dist docs
           # Create .nojekyll to prevent GitHub Pages from ignoring _astro folder
           touch docs/.nojekyll
+        env:
+          # Set SITE_DOMAIN secret to switch domains:
+          # 'blog.sarcasticrobo.online' (default, custom domain)
+          # 'deepak4395.github.io/personalBlog' (GitHub Pages fallback)
+          SITE_DOMAIN: ${{ secrets.SITE_DOMAIN || 'blog.sarcasticrobo.online' }}
 
       - name: Commit and push changes
         run: |
