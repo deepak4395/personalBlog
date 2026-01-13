@@ -132,31 +132,14 @@ jobs:
           git commit -m "Add AI-generated content"
           git push
       
-      # Build and deploy website immediately after generating content
+      # Build website and commit dist folder
       - name: Build website
         if: steps.check-changes.outputs.has_changes == 'true'
         run: pnpm --filter website build
 
-      - name: Upload artifact
+      - name: Commit and push built website
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: website/dist
-
-  deploy:
-    needs: generate-content
-    runs-on: ubuntu-latest
-    if: needs.generate-content.outputs.has_changes == 'true'
-    
-    permissions:
-      pages: write
-      id-token: write
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: |
+          git add website/dist/
+          git commit -m "Build and deploy website"
+          git push

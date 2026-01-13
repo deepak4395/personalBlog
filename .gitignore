@@ -2,9 +2,9 @@
 node_modules/
 .pnpm-store/
 
-# Build outputs
-dist/
-build/
+# Build outputs (packages only, keep website dist for deployment)
+packages/*/dist/
+packages/*/build/
 .astro/
 
 # Environment and secrets
