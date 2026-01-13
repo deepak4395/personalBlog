@@ -1,20 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BlogFilter from '../components/BlogFilter';
 import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL;
 
-const news = (await getCollection('news')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-).slice(0, 3);
+// Get all posts from both collections and combine them
+const news = await getCollection('news');
+const tutorials = await getCollection('tutorials');
 
-const tutorials = (await getCollection('tutorials')).sort(
+// Combine and sort all posts by date (newest first)
+const allPosts = [...news, ...tutorials].sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-).slice(0, 3);
+);
 ---
 
 <Layout title="Embedded Systems Blog - AI-Powered Content">
-  <div class="text-center mb-16">
+  <div class="text-center mb-12">
     <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-4">
       Embedded Systems Blog
     </h1>
@@ -23,77 +25,5 @@ const tutorials = (await getCollection('tutorials')).sort(
     </p>
   </div>
 
-  <section class="mb-16">
-    <div class="flex justify-between items-center mb-8">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-        Latest News
-      </h2>
-      <a href={`${base}/news`} class="text-primary-600 dark:text-primary-400 hover:underline">
-        View all →
-      </a>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      {news.map((post) => (
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-          <a href={`${base}/news/${post.slug}`}>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
-              {post.data.title}
-            </h3>
-          </a>
-          <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-            {post.data.description}
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            {post.data.tags.slice(0, 3).map((tag) => (
-              <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <time class="text-sm text-gray-500 dark:text-gray-500">
-            {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </time>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section>
-    <div class="flex justify-between items-center mb-8">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-        Latest Tutorials
-      </h2>
-      <a href={`${base}/tutorials`} class="text-primary-600 dark:text-primary-400 hover:underline">
-        View all →
-      </a>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      {tutorials.map((post) => (
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-          <a href={`${base}/tutorials/${post.slug}`}>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
-              {post.data.title}
-            </h3>
-          </a>
-          <div class="mb-3">
-            <span class={`text-xs px-2 py-1 rounded ${
-              post.data.difficulty === 'beginner' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-              post.data.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-              'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-            }`}>
-              {post.data.difficulty}
-            </span>
-          </div>
-          <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-            {post.data.description}
-          </p>
-          <time class="text-sm text-gray-500 dark:text-gray-500">
-            {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </time>
-        </article>
-      ))}
-    </div>
-  </section>
+  <BlogFilter posts={allPosts} base={base} client:load />
 </Layout>
