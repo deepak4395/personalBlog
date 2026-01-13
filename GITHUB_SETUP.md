@@ -60,8 +60,12 @@ git push -u origin main
 1. Go to your repository on GitHub
 2. Click **Settings** → **Pages** (left sidebar)
 3. Under "Build and deployment":
-   - Source: **GitHub Actions**
+   - Source: **Deploy from a branch**
+   - Branch: **main**
+   - Folder: **/docs**
 4. Click **Save**
+
+**Note:** The workflow will automatically build your website and commit HTML files to the `docs/` folder. GitHub Pages will serve them from there.
 
 ## Step 6: Add GitHub Secrets (3 min)
 
