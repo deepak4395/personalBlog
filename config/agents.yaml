@@ -112,12 +112,12 @@ agents:
           {
             "title": "Engaging title (60-80 characters)",
             "description": "SEO-friendly description (150-160 characters)",
-            "content": "Full markdown content here with ## headings, paragraphs, lists, code blocks if needed (800-1200 words). Include technical details, practical applications, and why this matters to embedded developers.",
-            "tags": ["tag1", "tag2", "tag3"],
+            "content": "Full markdown article following this structure:\n\n## Introduction\n\nOpening paragraph introducing the topic...\n\n### Key Point 1\n\n- **Bold feature**: Description\n- **Another feature**: Description\n\nParagraph with details...\n\n### Key Point 2\n\nMore content with proper formatting.\n\n## Conclusion\n\nWrap up the article.\n\nUse ## for main sections, ### for subsections. Include bullet lists with **bold** labels. Write 800-1200 words total.",
+            "tags": ["tag1", "tag2", "tag3", "tag4"],
             "category": "news"
           }
           
-          Important: The content field must be complete markdown text, not a placeholder. Write the full article.
+          CRITICAL: The content field must contain complete markdown with ## headings, ### subheadings, bullet lists, and **bold** text. No placeholders!
     
     # Agent-specific AI model override
     aiModel: "tier1"  # Use free Gemini for news
