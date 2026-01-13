@@ -1,6 +1,11 @@
 name: Generate AI Content
 
 on:
+  # Run on every push (remove this after website is stable)
+  push:
+    branches:
+      - main
+  
   # Manual trigger
   workflow_dispatch:
     inputs:
@@ -55,7 +60,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build packages
         run: pnpm -r run build
