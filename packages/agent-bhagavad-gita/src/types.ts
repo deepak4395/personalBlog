@@ -24,6 +24,7 @@ export interface GeneratedShlokaPost {
   verse: number;
   sanskrit: string;
   transliteration: string;
+  translation: string;
   tags: string[];
   category: string;
   previousShloka: ShlokaReference | null;

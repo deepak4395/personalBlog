@@ -27,7 +27,7 @@ export class BhagavadGitaAgent {
 
     // Load config
     const config = configLoader.loadAgentsConfig();
-    const agentConfig = config.agents['bhagavad-gita'];
+    const agentConfig = (config.agents as any)['bhagavad-gita'];
 
     this.shlokaGenerator = new ShlokaGenerator(
       this.aiClient,
@@ -47,7 +47,7 @@ export class BhagavadGitaAgent {
       logger.info('Starting Bhagavad Gita Agent...');
 
       const config = configLoader.loadAgentsConfig();
-      const agentConfig = config.agents['bhagavad-gita'];
+      const agentConfig = (config.agents as any)['bhagavad-gita'];
 
       if (!agentConfig.enabled) {
         logger.warn('Bhagavad Gita agent is disabled');
@@ -162,11 +162,11 @@ export class BhagavadGitaAgent {
       aiGenerated: true,
     };
 
-    const markdown = generateMarkdown(frontmatter, markdownContent);
+    const markdown = generateMarkdown({ frontmatter: frontmatter as any, content: markdownContent });
 
     // Validate before saving
     const validation = validateMarkdown(markdown);
-    if (!validation.isValid) {
+    if (!validation.valid) {
       logger.warn('Generated markdown has validation issues:', validation.errors);
     }
 
