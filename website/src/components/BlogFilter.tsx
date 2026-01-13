@@ -127,7 +127,7 @@ export default function BlogFilter({ posts, base }: BlogFilterProps) {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => {
             // Construct proper URL path - always start with /
@@ -150,7 +150,9 @@ export default function BlogFilter({ posts, base }: BlogFilterProps) {
                 <span className={`text-xs px-2 py-1 rounded ${
                   post.data.category === 'news'
                     ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                    : 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+                    : post.data.category === 'tutorials'
+                    ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+                    : 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
                 }`}>
                   {post.data.category}
                 </span>
