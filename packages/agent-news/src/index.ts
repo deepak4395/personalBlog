@@ -96,8 +96,8 @@ export class NewsAggregatorAgent {
       logger.info('Generating blog posts...');
       const tier = agentConfig.aiModel || 'tier1';
       
-      // Filter out articles that already have posts
-      const filteredArticles = await this.filterExistingPosts(ranked, agentConfig.outputPath);
+      // Filter out articles that already have posts and get existing blog context
+      const { filteredArticles, existingBlogContext } = await this.filterExistingPosts(ranked, agentConfig.outputPath);
       if (filteredArticles.length === 0) {
         logger.info('All top articles already have blog posts');
         return;
@@ -106,7 +106,8 @@ export class NewsAggregatorAgent {
       const generatedPosts = await this.blogGenerator.generatePosts(
         filteredArticles,
         agentConfig.config.maxArticlesPerRun,
-        tier
+        tier,
+        existingBlogContext
       );
 
       // Step 5: Save blog posts
@@ -175,17 +176,18 @@ export class NewsAggregatorAgent {
   private async filterExistingPosts(
     articles: ProcessedArticle[],
     outputPath: string
-  ): Promise<ProcessedArticle[]> {
+  ): Promise<{ filteredArticles: ProcessedArticle[]; existingBlogContext: Array<{ title: string; url: string }> }> {
     const config = configLoader.loadAgentsConfig();
     const contentPath = resolve(process.cwd(), config.globalSettings.contentPath, outputPath);
 
     if (!existsSync(contentPath)) {
-      return articles;
+      return { filteredArticles: articles, existingBlogContext: [] };
     }
 
     // Read existing post files
     const existingFiles = readdirSync(contentPath).filter(file => file.endsWith('.md') && file !== '.gitkeep.md');
-    const existingTitles = new Set<string>();
+    const existingBlogContext: Array<{ title: string; url: string }> = [];
+    const existingTitlesSet = new Set<string>();
     const existingUrls = new Set<string>();
 
     for (const file of existingFiles) {
@@ -194,16 +196,27 @@ export class NewsAggregatorAgent {
       
       // Extract title from frontmatter
       const titleMatch = content.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+      let title = '';
       if (titleMatch) {
-        existingTitles.add(titleMatch[1].toLowerCase().trim());
+        title = titleMatch[1].trim();
+        existingTitlesSet.add(title.toLowerCase());
       }
       
       // Extract source URL from frontmatter
       const urlMatch = content.match(/url:\s*["']?(.+?)["']?\s*$/m);
+      let url = '';
       if (urlMatch) {
-        existingUrls.add(urlMatch[1].trim());
+        url = urlMatch[1].trim();
+        existingUrls.add(url);
+      }
+      
+      // Add to context if we have both title and URL
+      if (title && url) {
+        existingBlogContext.push({ title, url });
       }
     }
+
+    logger.info(`Found ${existingBlogContext.length} existing blog posts to use as context`);
 
     // Filter out articles with duplicate URLs or similar titles
     const filtered = articles.filter(article => {
@@ -216,14 +229,14 @@ export class NewsAggregatorAgent {
       const normalizedTitle = article.title.toLowerCase().trim();
       
       // Check for exact match or significant overlap
-      for (const existingTitle of existingTitles) {
-        // If 70% of words match, consider it duplicate
+      for (const existingTitle of existingTitlesSet) {
+        // If 60% of words match, consider it duplicate
         const articleWords = normalizedTitle.split(/\s+/).filter(w => w.length > 3); // Ignore short words
         const existingWords = existingTitle.split(/\s+/).filter(w => w.length > 3);
         const commonWords = articleWords.filter(word => existingWords.includes(word));
         
         if (articleWords.length > 0 && commonWords.length / articleWords.length > 0.6) {
-          logger.info(`Skipping duplicate article: ${article.title} (matches: ${existingTitle})`);
+          logger.info(`Skipping duplicate article: ${article.title} (matches existing post)`);
           return false;
         }
       }
@@ -232,7 +245,7 @@ export class NewsAggregatorAgent {
     });
 
     logger.info(`Filtered ${articles.length - filtered.length} duplicate articles`);
-    return filtered;
+    return { filteredArticles: filtered, existingBlogContext };
   }
 
   /**

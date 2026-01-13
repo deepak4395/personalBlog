@@ -23,16 +23,31 @@ export class BlogGenerator {
   /**
    * Generate a blog post from an article
    */
-  async generatePost(article: ProcessedArticle, tier: 'tier1' | 'tier2' | 'tier3' = 'tier1'): Promise<GeneratedBlogPost> {
+  async generatePost(
+    article: ProcessedArticle, 
+    tier: 'tier1' | 'tier2' | 'tier3' = 'tier1',
+    existingBlogContext: Array<{ title: string; url: string }> = []
+  ): Promise<GeneratedBlogPost> {
     try {
       logger.info(`Generating blog post for: ${article.title}`);
 
-      // Build the user prompt
-      const userPrompt = this.userPromptTemplate
+      // Build the user prompt with existing blog context
+      let userPrompt = this.userPromptTemplate
         .replace('{title}', article.title)
         .replace('{source}', article.siteName)
         .replace('{url}', article.url)
         .replace('{content}', article.content || article.summary || '');
+
+      // Add existing blog context to avoid duplication
+      if (existingBlogContext.length > 0) {
+        const contextList = existingBlogContext
+          .slice(-10) // Last 10 posts
+          .map((post, i) => `${i + 1}. "${post.title}" (source: ${post.url})`)
+          .join('\n');
+        
+        const existingContext = `\n\nIMPORTANT - We already have these blog posts:\n${contextList}\n\nMake sure to:\n1. Check if the source URL matches any existing post - if yes, SKIP this article\n2. Provide NEW insights and a DIFFERENT perspective than these existing posts\n3. Focus on unique angles not covered before`;
+        userPrompt += existingContext;
+      }
 
       // Request JSON format
       const result = await this.aiClient.generate(userPrompt, {
@@ -91,7 +106,8 @@ export class BlogGenerator {
   async generatePosts(
     articles: ProcessedArticle[],
     maxPosts: number,
-    tier: 'tier1' | 'tier2' | 'tier3' = 'tier1'
+    tier: 'tier1' | 'tier2' | 'tier3' = 'tier1',
+    existingBlogContext: Array<{ title: string; url: string }> = []
   ): Promise<Array<{ article: ProcessedArticle; post: GeneratedBlogPost }>> {
     const results: Array<{ article: ProcessedArticle; post: GeneratedBlogPost }> = [];
 
@@ -99,7 +115,7 @@ export class BlogGenerator {
       const article = articles[i];
 
       try {
-        const post = await this.generatePost(article, tier);
+        const post = await this.generatePost(article, tier, existingBlogContext);
         results.push({ article, post });
 
         // Delay to avoid hitting 2K RPM limit (30 req/min = 2s delay)
