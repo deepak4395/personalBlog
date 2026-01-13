@@ -171,6 +171,9 @@ export class NewsAggregatorAgent {
     const config = configLoader.loadAgentsConfig();
     const contentPath = resolve(process.cwd(), config.globalSettings.contentPath, outputPath);
 
+    logger.info(`Saving posts to: ${contentPath}`);
+    logger.info(`Current working directory: ${process.cwd()}`);
+
     // Ensure directory exists
     if (!existsSync(contentPath)) {
       mkdirSync(contentPath, { recursive: true });
@@ -220,6 +223,7 @@ export class NewsAggregatorAgent {
 
         writeFileSync(filepath, markdown, 'utf-8');
         logger.info(`Saved: ${filename}`);
+        logger.info(`Full path: ${filepath}`);
 
         savedCount++;
       } catch (error: any) {
