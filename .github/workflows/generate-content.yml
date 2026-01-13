@@ -123,16 +123,7 @@ jobs:
         run: |
           git diff --quiet website/src/content/ || echo "has_changes=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push new content
-        if: steps.check-changes.outputs.has_changes == 'true'
-        run: |
-          git config user.name "AI Content Bot"
-          git config user.email "bot@github.com"
-          git add website/src/content/
-          git commit -m "Add AI-generated content"
-          git push
-      
-      # Build website and commit dist folder
+      # Build website and prepare for deployment
       - name: Build website
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
@@ -141,9 +132,12 @@ jobs:
           rm -rf docs
           cp -r website/dist docs
 
-      - name: Commit and push built website
+      - name: Commit and push both .md and HTML files
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
+          git config user.name "AI Content Bot"
+          git config user.email "bot@github.com"
+          git add website/src/content/
           git add docs/
-          git commit -m "Build and deploy website"
+          git commit -m "Add AI-generated blog post (.md) and built website (HTML)"
           git push
