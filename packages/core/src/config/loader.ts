@@ -37,6 +37,8 @@ export class ConfigLoader {
       const fullPath = resolve(process.cwd(), configPath);
       
       if (!existsSync(fullPath)) {
+        logger.error(`Agents config file not found at: ${fullPath}`);
+        logger.error(`Current working directory: ${process.cwd()}`);
         throw new Error(`Agents config file not found: ${fullPath}`);
       }
 
@@ -66,24 +68,39 @@ export class ConfigLoader {
     try {
       // Get secrets path from agents config or use default
       const agentsConfig = this.agentsConfig || this.loadAgentsConfig();
-      const fullPath = resolve(
+      
+      // Try unencrypted first (GitHub Actions), then encrypted (local)
+      const unencryptedPath = resolve(process.cwd(), './config/secrets.yaml');
+      const encryptedPath = resolve(
         process.cwd(),
         secretsPath || agentsConfig.secretsFile || './config/secrets.enc.yaml'
       );
-
-      if (!existsSync(fullPath)) {
-        throw new Error(`Secrets file not found: ${fullPath}`);
+      
+      let fullPath: string;
+      let isEncrypted = false;
+      
+      if (existsSync(unencryptedPath)) {
+        fullPath = unencryptedPath;
+        logger.info(`Using unencrypted secrets file: ${fullPath}`);
+      } else if (existsSync(encryptedPath)) {
+        fullPath = encryptedPath;
+        isEncrypted = true;
+        logger.info(`Using encrypted secrets file: ${fullPath}`);
+      } else {
+        logger.error(`Secrets file not found at: ${unencryptedPath} or ${encryptedPath}`);
+        logger.error(`Current working directory: ${process.cwd()}`);
+        throw new Error(`Secrets file not found: ${unencryptedPath} or ${encryptedPath}`);
       }
 
       logger.info(`Loading secrets from: ${fullPath}`);
 
-      // Check if file is encrypted (contains 'sops:' metadata)
+      // Read and check if file is encrypted
       const rawContent = readFileSync(fullPath, 'utf-8');
-      const isEncrypted = rawContent.includes('sops:') || rawContent.includes('ENC[');
+      const needsDecryption = isEncrypted && (rawContent.includes('sops:') || rawContent.includes('ENC['));
 
       let decryptedContent: string;
 
-      if (isEncrypted) {
+      if (needsDecryption) {
         // Use SOPS to decrypt
         logger.info('Decrypting secrets with SOPS...');
         try {
