@@ -142,19 +142,26 @@ jobs:
 
       # Build website and prepare for deployment
       - name: Build website
-        if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           pnpm --filter website build
           # Copy dist to docs for GitHub Pages
           rm -rf docs
           cp -r website/dist docs
 
-      - name: Commit and push both .md and HTML files
-        if: steps.check-changes.outputs.has_changes == 'true'
+      - name: Commit and push changes
         run: |
           git config user.name "AI Content Bot"
           git config user.email "bot@github.com"
-          git add website/src/content/
+          git add website/src/content/ || true
           git add docs/
-          git commit -m "Add AI-generated blog post (.md) and built website (HTML)"
-          git push
+          
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            if [ "${{ steps.check-changes.outputs.has_changes }}" = "true" ]; then
+              git commit -m "Add AI-generated blog post (.md) and built website (HTML)"
+            else
+              git commit -m "Rebuild website"
+            fi
+            git push
+          fi
