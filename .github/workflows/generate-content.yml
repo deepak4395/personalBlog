@@ -156,6 +156,8 @@ jobs:
           cp -r website/dist docs
           # Create .nojekyll to prevent GitHub Pages from ignoring _astro folder
           touch docs/.nojekyll
+          # Create CNAME file for custom domain
+          echo "blog.sarcasticrobo.online" > docs/CNAME
         env:
           # Set SITE_DOMAIN secret to switch domains:
           # 'blog.sarcasticrobo.online' (default, custom domain)
