@@ -1,17 +1,461 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="A fully automated blog generation system using AI agents, GitHub Actions, and Astro - fetching tech news and creating original analysis daily."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.19"><title>AI-Powered Blog System Successfully Deployed</title><link rel="stylesheet" href="/_astro/contact.DtHy8lAs.css">
-<link rel="stylesheet" href="/_astro/_slug_.Bsnv9oGO.css"></head> <body class="bg-gray-50 dark:bg-gray-900 min-h-screen"> <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"> <div class="container mx-auto px-4 py-4"> <div class="flex justify-between items-center"> <a href="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="A comprehensive look at the fully automated blog generation system - from AI agents to GitHub Actions deployment, featuring intelligent deduplication and dual-domain support."><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.19"><title>AI-Powered Blog System: Architecture &amp; Implementation Details</title><link rel="stylesheet" href="/_astro/contact.DfSyHRKX.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bb2KOKtM.css"></head> <body class="bg-gray-50 dark:bg-gray-900 min-h-screen"> <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"> <div class="container mx-auto px-4 py-4"> <div class="flex justify-between items-center"> <a href="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">
 Embedded Systems Blog
 </a> <div class="flex gap-6 items-center"> <a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition">
 Contact
 </a> <a href="https://profile.sarcasticrobo.online" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
 Profile
-</a> </div> </div> </div> </nav> <main class="container mx-auto px-4 py-8">  <article class="max-w-4xl mx-auto"> <!-- Hero Header --> <header class="mb-12 pb-8 border-b-2 border-primary-200 dark:border-primary-800"> <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"> AI-Powered Blog System Successfully Deployed </h1> <p class="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"> A fully automated blog generation system using AI agents, GitHub Actions, and Astro - fetching tech news and creating original analysis daily. </p> <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-6"> <div class="flex items-center gap-2"> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path> </svg> <time datetime="2026-01-13T00:00:00.000Z" class="font-medium"> January 13, 2026 </time> </div> </div> <div class="flex flex-wrap gap-2"> <span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
+</a> </div> </div> </div> </nav> <main class="container mx-auto px-4 py-8">  <article class="max-w-4xl mx-auto"> <!-- Hero Header --> <header class="mb-12 pb-8 border-b-2 border-primary-200 dark:border-primary-800"> <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"> AI-Powered Blog System: Architecture &amp; Implementation Details </h1> <p class="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"> A comprehensive look at the fully automated blog generation system - from AI agents to GitHub Actions deployment, featuring intelligent deduplication and dual-domain support. </p> <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-6"> <div class="flex items-center gap-2"> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path> </svg> <time datetime="2026-01-13T00:00:00.000Z" class="font-medium"> January 13, 2026 </time> </div> </div> <div class="flex flex-wrap gap-2"> <span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
 #meta </span><span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
 #automation </span><span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
 #AI </span><span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
 #github-actions </span><span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
-#astro </span> </div> </header> <!-- Article Content with Better Typography --> <div class="blog-content">  <h2 id="welcome-to-the-ai-powered-blog">Welcome to the AI-Powered Blog</h2>
-<p>After extensive development and debugging, our automated blog generation system is now <strong>fully operational</strong>! This blog is powered by AI agents that fetch news, analyze content, and generate original articles about embedded systems - all without manual intervention.</p>
+#astro </span><span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
+#architecture </span> </div> </header> <!-- Article Content with Better Typography --> <div class="blog-content">  <h2 id="project-overview">Project Overview</h2>
+<p>After extensive development spanning multiple iterations, this blog is now a <strong>fully automated, production-ready content platform</strong> that demonstrates modern software architecture principles. The system autonomously fetches news, generates original analysis, and deploys updates - all without manual intervention.</p>
+<h3 id="core-architecture-principles">Core Architecture Principles</h3>
+<ol>
+<li><strong>Monorepo Structure</strong>: Shared code, independent packages, unified builds</li>
+<li><strong>Event-Driven Automation</strong>: GitHub Actions orchestrates the entire pipeline</li>
+<li><strong>Tiered AI Fallback</strong>: Cost optimization through intelligent provider selection</li>
+<li><strong>Intelligent Deduplication</strong>: Multi-level filtering prevents duplicate content</li>
+<li><strong>Environment-Based Configuration</strong>: Single codebase supports multiple deployment targets</li>
+</ol>
+<hr>
+<h2 id="system-architecture">System Architecture</h2>
+<h3 id="package-structure-4-packages">Package Structure (4 Packages)</h3>
+<h4 id="1-personalblogcore---shared-foundation">1. <strong>@personalBlog/core</strong> - Shared Foundation</h4>
+<p><strong>Purpose</strong>: Reusable utilities and infrastructure</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>
+<p><strong>AI Client</strong> (<code>src/ai/client.ts</code>):</p>
+<ul>
+<li>Multi-provider support (Gemini, Groq, OpenAI)</li>
+<li>Tiered fallback chain (tier1 → tier2 → tier3)</li>
+<li>Usage tracking and budget monitoring</li>
+<li>Automatic error handling and retries</li>
+</ul>
+</li>
+<li>
+<p><strong>Config Loader</strong> (<code>src/config/loader.ts</code>):</p>
+<ul>
+<li>YAML configuration with Zod validation</li>
+<li>GitHub Secrets integration (runtime secrets.yaml)</li>
+<li>Workspace root detection</li>
+<li>Singleton pattern for performance</li>
+</ul>
+</li>
+<li>
+<p><strong>Content Utilities</strong>:</p>
+<ul>
+<li>Markdown generation with frontmatter</li>
+<li>Filename generation (YYYY-MM-DD-slug format)</li>
+<li>Content validation</li>
+<li>Type-safe schemas</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dependencies</strong>: <code>@google/generative-ai</code>, <code>groq-sdk</code>, <code>openai</code>, <code>zod</code>, <code>yaml</code>, <code>pino</code></p>
+<hr>
+<h4 id="2-personalblogagent-news---news-aggregator">2. <strong>@personalBlog/agent-news</strong> - News Aggregator</h4>
+<p><strong>Purpose</strong>: Fetches and analyzes tech news, generates blog posts</p>
+<p><strong>Workflow</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Fetch (281+ articles from 7 sources)</span></span>
+<span class="line"><span>   ├─ RSS Feeds (6): Hackaday, Embedded.com, CNX Software, etc.</span></span>
+<span class="line"><span>   └─ Hacker News API: Top stories matching keywords</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>2. Deduplicate (Remove identical articles)</span></span>
+<span class="line"><span>   └─ URL-based + content similarity</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>3. Rank by Relevance (AI scoring 0.0-1.0)</span></span>
+<span class="line"><span>   └─ Filter: score ≥ 0.7</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>4. Filter Existing Posts</span></span>
+<span class="line"><span>   ├─ Extract titles + source URLs from existing .md files</span></span>
+<span class="line"><span>   ├─ Check exact URL match (most reliable)</span></span>
+<span class="line"><span>   └─ Check title similarity (60% word overlap threshold)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>5. Generate Blog Post (AI with context)</span></span>
+<span class="line"><span>   ├─ Pass last 10 existing blog titles + URLs to AI</span></span>
+<span class="line"><span>   ├─ AI analyzes with awareness of existing content</span></span>
+<span class="line"><span>   └─ Generate 800-1200 word original analysis</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>6. Save &#x26; Validate</span></span>
+<span class="line"><span>   ├─ Create frontmatter (title, tags, sources)</span></span>
+<span class="line"><span>   ├─ Validate markdown structure</span></span>
+<span class="line"><span>   └─ Save to website/src/content/news/</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><strong>Key Files</strong>:</p>
+<ul>
+<li><code>src/index.ts</code>: Main orchestrator</li>
+<li><code>src/sources/</code>: RSS fetcher, Hacker News client</li>
+<li><code>src/processors/</code>: Deduplicator, relevance ranker</li>
+<li><code>src/generator/blog-generator.ts</code>: AI-powered blog generation</li>
+</ul>
+<p><strong>Smart Deduplication</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// 1. URL-based (100% reliable)</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (existingUrls.</span><span style="color:#B392F0">has</span><span style="color:#E1E4E8">(article.url)) {</span></span>
+<span class="line"><span style="color:#B392F0">  skip</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 2. Title similarity (60% threshold)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> articleWords</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> title.</span><span style="color:#B392F0">split</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">\s</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">filter</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">w</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> w.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ></span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> existingWords</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> existing.</span><span style="color:#B392F0">split</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">\s</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">filter</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">w</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> w.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ></span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> overlap</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> intersection</span><span style="color:#E1E4E8">(articleWords, existingWords);</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (overlap </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> articleWords.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ></span><span style="color:#79B8FF"> 0.6</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">  skip</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 3. Pass context to AI</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> context</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> existingPosts.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">p</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#9ECBFF">  `"${</span><span style="color:#E1E4E8">p</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">title</span><span style="color:#9ECBFF">}" (source: ${</span><span style="color:#E1E4E8">p</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">url</span><span style="color:#9ECBFF">})`</span></span>
+<span class="line"><span style="color:#E1E4E8">).</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span></code></pre>
+<hr>
+<h4 id="3-personalblogagent-diy-tutorials---tutorial-generator">3. <strong>@personalBlog/agent-diy-tutorials</strong> - Tutorial Generator</h4>
+<p><strong>Purpose</strong>: Researches forums and creates educational content</p>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>Reddit: r/embedded, r/arduino, r/raspberrypi</li>
+<li>Stack Exchange: Electronics, Arduino, Raspberry Pi</li>
+</ul>
+<p><strong>Workflow</strong> (Multi-Phase Generation):</p>
+<ol>
+<li>Fetch forum posts by keywords</li>
+<li>Topic discovery (AI identifies tutorial-worthy topics)</li>
+<li>Tutorial outline generation (structure + sections)</li>
+<li>Content writing (detailed step-by-step guides)</li>
+<li>Save with difficulty level (beginner/intermediate/advanced)</li>
+</ol>
+<p><strong>Status</strong>: Framework ready, currently disabled</p>
+<hr>
+<h4 id="4-personalblogscheduler---cli-orchestrator">4. <strong>@personalBlog/scheduler</strong> - CLI Orchestrator</h4>
+<p><strong>Purpose</strong>: Execute agents from command line or GitHub Actions</p>
+<p><strong>Commands</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Run specific agent</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#9ECBFF"> packages/scheduler/dist/cli.js</span><span style="color:#9ECBFF"> run-agent</span><span style="color:#9ECBFF"> news-aggregator</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Run all enabled agents</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#9ECBFF"> packages/scheduler/dist/cli.js</span><span style="color:#9ECBFF"> run-all</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># List agents with status</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#9ECBFF"> packages/scheduler/dist/cli.js</span><span style="color:#9ECBFF"> list</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Show configuration</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#9ECBFF"> packages/scheduler/dist/cli.js</span><span style="color:#9ECBFF"> config</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Registry System</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// packages/scheduler/src/registry.ts</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> agentRegistry</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Record</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">AgentRunner</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">  'news-aggregator'</span><span style="color:#E1E4E8">: runNewsAgent,</span></span>
+<span class="line"><span style="color:#9ECBFF">  'news'</span><span style="color:#E1E4E8">: runNewsAgent,  </span><span style="color:#6A737D">// Alias</span></span>
+<span class="line"><span style="color:#9ECBFF">  'diy-tutorials'</span><span style="color:#E1E4E8">: runDIYAgent,</span></span>
+<span class="line"><span style="color:#9ECBFF">  'tutorials'</span><span style="color:#E1E4E8">: runDIYAgent,  </span><span style="color:#6A737D">// Alias</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Execution Flow</strong>:</p>
+<ol>
+<li>Load configuration (<code>agents.yaml</code>)</li>
+<li>Check if agent is enabled</li>
+<li>Run agent with error handling</li>
+<li>Report execution time and results</li>
+<li>Continue to next agent on failure (if running all)</li>
+</ol>
+<hr>
+<h3 id="frontend-stack">Frontend Stack</h3>
+<p><strong>Framework</strong>: Astro 4.16.19</p>
+<ul>
+<li>Zero-JS by default (static HTML)</li>
+<li>React islands for interactivity (BlogFilter, FeedbackForm)</li>
+<li>Content Collections with type-safe schemas</li>
+</ul>
+<p><strong>Styling</strong>: Tailwind CSS</p>
+<ul>
+<li>Custom <code>.blog-content</code> classes (not prose utilities)</li>
+<li>Dark mode support (system preference)</li>
+<li>Responsive grid layouts</li>
+</ul>
+<p><strong>Key Features</strong>:</p>
+<ol>
+<li><strong>Unified Blog View</strong>: Single page shows all posts (news + tutorials)</li>
+<li><strong>Client-Side Filtering</strong>: Tag search + dropdown filter (instant)</li>
+<li><strong>Base Path Handling</strong>: Supports both custom domain (<code>/</code>) and GitHub Pages (<code>/personalBlog</code>)</li>
+</ol>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><code>BlogFilter.tsx</code>: Interactive filtering with React state</li>
+<li><code>FeedbackForm.tsx</code>: Contact form (FormSubmit.co integration)</li>
+<li><code>Layout.astro</code>: Navigation + footer</li>
+<li><code>BlogPost.astro</code>: Article layout with enhanced typography</li>
+</ul>
+<hr>
+<h3 id="ai-configuration">AI Configuration</h3>
+<p><strong>Tiered Fallback System</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">globalSettings</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  aiModels</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    tier1</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">google</span></span>
+<span class="line"><span style="color:#85E89D">      model</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">gemini-2.0-flash-exp</span></span>
+<span class="line"><span style="color:#85E89D">      costPer1MTokens</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.10</span></span>
+<span class="line"><span style="color:#E1E4E8">      </span></span>
+<span class="line"><span style="color:#85E89D">    tier2</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">groq</span></span>
+<span class="line"><span style="color:#85E89D">      model</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">llama-3.3-70b-versatile</span></span>
+<span class="line"><span style="color:#85E89D">      costPer1MTokens</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.79</span></span>
+<span class="line"><span style="color:#E1E4E8">      </span></span>
+<span class="line"><span style="color:#85E89D">    tier3</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">openai</span></span>
+<span class="line"><span style="color:#85E89D">      model</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">gpt-4o-mini</span></span>
+<span class="line"><span style="color:#85E89D">      costPer1MTokens</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.15</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#85E89D">  fallbackChain</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">tier1</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">tier2</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">tier3</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Why This Works</strong>:</p>
+<ul>
+<li><strong>Tier 1 (Gemini)</strong>: Fast, cheap, unlimited RPD (paid tier)</li>
+<li><strong>Tier 2 (Groq)</strong>: Fast, free, good quality (fallback)</li>
+<li><strong>Tier 3 (OpenAI)</strong>: Expensive but reliable (emergency)</li>
+</ul>
+<p><strong>Prompt Engineering</strong>:</p>
+<ul>
+<li>System prompt: “ANALYZE and INTERPRET, not copy”</li>
+<li>User prompt: Includes article + existing blog context</li>
+<li>Output format: Structured JSON (title, description, content, tags)</li>
+<li>Required sections: Overview, Technical Implications, Real-World Applications, Key Takeaways, Conclusion</li>
+</ul>
+<hr>
+<h3 id="automation-pipeline">Automation Pipeline</h3>
+<p><strong>GitHub Actions Workflow</strong> (<code>generate-content.yml</code>):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">Triggers</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">Push to main (for testing)</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">Manual dispatch (select agent</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">all/news/tutorials)</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">Schedule</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Daily 6 AM UTC (news)</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">Schedule</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Monday 8 AM UTC (tutorials)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">Steps (12 total)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">  1. Checkout repository</span></span>
+<span class="line"><span style="color:#9ECBFF">  2. Setup Node.js 20</span></span>
+<span class="line"><span style="color:#9ECBFF">  3. Install pnpm 8</span></span>
+<span class="line"><span style="color:#9ECBFF">  4. Cache pnpm store (speeds up builds)</span></span>
+<span class="line"><span style="color:#9ECBFF">  5. Install dependencies</span></span>
+<span class="line"><span style="color:#9ECBFF">  6. Build TypeScript packages (pnpm -r run build)</span></span>
+<span class="line"><span style="color:#9ECBFF">  7. Create config/secrets.yaml from GitHub Secrets</span></span>
+<span class="line"><span style="color:#9ECBFF">  8. Run agents (node packages/scheduler/dist/cli.js)</span></span>
+<span class="line"><span style="color:#9ECBFF">  9. Check for new content (git diff)</span></span>
+<span class="line"><span style="color:#9ECBFF">  10. Build Astro website (with SITE_DOMAIN env var)</span></span>
+<span class="line"><span style="color:#9ECBFF">  11. Copy dist/ to docs/ + create .nojekyll</span></span>
+<span class="line"><span style="color:#9ECBFF">  12. Commit &#x26; push (.md + HTML in single commit)</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Critical Details</strong>:</p>
+<ul>
+<li><strong>Working Directory</strong>: MUST run from workspace root (not packages/scheduler/)</li>
+<li><strong>Why</strong>: File paths are relative to <code>process.cwd()</code>, incorrect directory saves files to wrong location</li>
+<li><strong>CNAME File</strong>: Created in docs/ for custom domain support</li>
+<li><strong>.nojekyll File</strong>: Prevents GitHub Pages from ignoring <code>_astro/</code> folder (CSS/JS)</li>
+</ul>
+<hr>
+<h3 id="domain-configuration">Domain Configuration</h3>
+<p><strong>Dual-Domain Support</strong> (Environment Variable Pattern):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// website/astro.config.mjs</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> siteDomain</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> process.env.</span><span style="color:#79B8FF">SITE_DOMAIN</span><span style="color:#F97583"> ||</span><span style="color:#9ECBFF"> 'blog.sarcasticrobo.online'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> isGitHubPages</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> siteDomain.</span><span style="color:#B392F0">includes</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'github.io'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#B392F0"> defineConfig</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  site: isGitHubPages </span></span>
+<span class="line"><span style="color:#F97583">    ?</span><span style="color:#9ECBFF"> `https://${</span><span style="color:#E1E4E8">siteDomain</span><span style="color:#9ECBFF">.</span><span style="color:#B392F0">split</span><span style="color:#9ECBFF">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#9ECBFF">)[</span><span style="color:#79B8FF">0</span><span style="color:#9ECBFF">]</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    :</span><span style="color:#9ECBFF"> `https://${</span><span style="color:#E1E4E8">siteDomain</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  base: isGitHubPages </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> siteDomain.</span><span style="color:#B392F0">includes</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">) </span></span>
+<span class="line"><span style="color:#F97583">    ?</span><span style="color:#9ECBFF"> `/${</span><span style="color:#E1E4E8">siteDomain</span><span style="color:#9ECBFF">.</span><span style="color:#B392F0">split</span><span style="color:#9ECBFF">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#9ECBFF">)[</span><span style="color:#79B8FF">1</span><span style="color:#9ECBFF">]</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    :</span><span style="color:#9ECBFF"> '/'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span></code></pre>
+<p><strong>How It Works</strong>:</p>
+<ol>
+<li><strong>Custom Domain</strong> (default): <code>base = '/'</code>, full URLs like <code>/news/slug</code></li>
+<li><strong>GitHub Pages</strong>: <code>SITE_DOMAIN=username.github.io/repo</code>, <code>base = '/repo'</code>, URLs like <code>/repo/news/slug</code></li>
+<li><strong>Workflow</strong>: Passes <code>SITE_DOMAIN</code> as env var during build</li>
+<li><strong>CNAME</strong>: Hardcoded to <code>blog.sarcasticrobo.online</code> in workflow</li>
+</ol>
+<p><strong>Switching</strong>:</p>
+<ul>
+<li>Add GitHub Secret <code>SITE_DOMAIN</code> → instant switch</li>
+<li>No code changes needed</li>
+</ul>
+<hr>
+<h2 id="technical-challenges-solved">Technical Challenges Solved</h2>
+<h3 id="1-working-directory-issues">1. <strong>Working Directory Issues</strong></h3>
+<p><strong>Problem</strong>: Agents saved files to <code>packages/scheduler/website/</code> instead of workspace root</p>
+<p><strong>Solution</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Before (wrong)</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> packages/scheduler</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">pnpm</span><span style="color:#9ECBFF"> agents:news</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># After (correct)</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#9ECBFF"> packages/scheduler/dist/cli.js</span><span style="color:#9ECBFF"> run-agent</span><span style="color:#9ECBFF"> news-aggregator</span></span>
+<span class="line"></span></code></pre>
+<h3 id="2-css-not-loading-on-github-pages">2. <strong>CSS Not Loading on GitHub Pages</strong></h3>
+<p><strong>Problem</strong>: <code>_astro/</code> folder ignored by Jekyll</p>
+<p><strong>Solution</strong>: Create <code>.nojekyll</code> file in <code>docs/</code></p>
+<h3 id="3-navigation-links-broken">3. <strong>Navigation Links Broken</strong></h3>
+<p><strong>Problem</strong>: <code>${base}/news</code> created <code>//news</code> when base was <code>/</code></p>
+<p><strong>Solution</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> basePath</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> base </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> '/'</span><span style="color:#F97583"> ?</span><span style="color:#9ECBFF"> ''</span><span style="color:#F97583"> :</span><span style="color:#E1E4E8"> base;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> url</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `${</span><span style="color:#E1E4E8">basePath</span><span style="color:#9ECBFF">}/news`</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span></code></pre>
+<h3 id="4-duplicate-posts">4. <strong>Duplicate Posts</strong></h3>
+<p><strong>Problem</strong>: AI generates different titles for same source article</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Check source URLs (exact match)</li>
+<li>Pass existing blog context to AI</li>
+<li>Title similarity with 60% threshold</li>
+</ul>
+<h3 id="5-ai-json-parsing-failures">5. <strong>AI JSON Parsing Failures</strong></h3>
+<p><strong>Problem</strong>: Gemini wraps JSON in markdown code blocks</p>
+<p><strong>Solution</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> codeBlockMatch</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> text.</span><span style="color:#B392F0">match</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">/</span><span style="color:#F97583">^</span><span style="color:#DBEDFF">```(?:json)</span><span style="color:#F97583">?</span><span style="color:#79B8FF">\s</span><span style="color:#F97583">*</span><span style="color:#79B8FF">\n</span><span style="color:#F97583">?</span><span style="color:#DBEDFF">(</span><span style="color:#79B8FF">[\s\S]</span><span style="color:#F97583">*?</span><span style="color:#DBEDFF">)</span><span style="color:#79B8FF">\n</span><span style="color:#F97583">?</span><span style="color:#DBEDFF">```</span><span style="color:#F97583">$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (codeBlockMatch) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> codeBlockMatch[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">].</span><span style="color:#B392F0">trim</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<h3 id="6-rate-limiting">6. <strong>Rate Limiting</strong></h3>
+<p><strong>Problem</strong>: Hit Gemini 2K RPM limit</p>
+<p><strong>Solution</strong>: 5-second delay between API calls</p>
+<hr>
+<h2 id="performance--metrics">Performance &#x26; Metrics</h2>
+<h3 id="build-performance">Build Performance</h3>
+<ul>
+<li><strong>TypeScript Compilation</strong>: ~10s (4 packages)</li>
+<li><strong>Website Build</strong>: ~45s (Astro)</li>
+<li><strong>Total Workflow Time</strong>: ~90s</li>
+<li><strong>Deployment</strong>: ~2 min (GitHub Pages)</li>
+</ul>
+<h3 id="content-generation">Content Generation</h3>
+<ul>
+<li><strong>Articles Fetched</strong>: 281+ per run</li>
+<li><strong>Articles Ranked</strong>: Top 4 (score ≥ 0.7)</li>
+<li><strong>Posts Generated</strong>: 1 per run (configured)</li>
+<li><strong>AI Tokens</strong>: ~1500 tokens/post</li>
+<li><strong>API Delay</strong>: 5s between requests</li>
+</ul>
+<h3 id="cost-analysis">Cost Analysis</h3>
+<ul>
+<li><strong>Gemini API</strong>: ~$0.10/month (1M tokens)</li>
+<li><strong>GitHub Actions</strong>: Free (40-100 min/month)</li>
+<li><strong>GitHub Pages</strong>: Free (unlimited bandwidth)</li>
+<li><strong>Custom Domain</strong>: $12/year (optional)</li>
+<li><strong>Total</strong>: ~$1.10/month</li>
+</ul>
+<hr>
+<h2 id="security--best-practices">Security &#x26; Best Practices</h2>
+<h3 id="secrets-management">Secrets Management</h3>
+<ul>
+<li>✅ GitHub Secrets (encrypted at rest)</li>
+<li>✅ Runtime secrets.yaml (created during workflow)</li>
+<li>✅ .gitignore prevents accidental commits</li>
+<li>❌ No SOPS/age needed (simplified from original design)</li>
+</ul>
+<h3 id="code-quality">Code Quality</h3>
+<ul>
+<li>TypeScript with strict mode</li>
+<li>Zod schema validation (runtime type safety)</li>
+<li>Pino structured logging</li>
+<li>Error boundaries in agents</li>
+</ul>
+<h3 id="git-workflow">Git Workflow</h3>
+<ul>
+<li>Single commit for .md + HTML</li>
+<li>Automatic rebasing on conflicts</li>
+<li>Branch protection (GitHub Pages serves from <code>main/docs</code>)</li>
+</ul>
+<hr>
+<h2 id="future-roadmap">Future Roadmap</h2>
+<h3 id="near-term-1-2-weeks">Near-Term (1-2 weeks)</h3>
+<ul>
+<li>✅ Unified blog view with filtering (Done!)</li>
+<li>✅ Dual domain support (Done!)</li>
+<li>✅ Context-aware AI generation (Done!)</li>
+<li>🔄 Test custom domain propagation</li>
+<li>📝 Add Giscus comments system</li>
+</ul>
+<h3 id="mid-term-1-2-months">Mid-Term (1-2 months)</h3>
+<ul>
+<li>🚀 Enable DIY tutorials agent</li>
+<li>📊 Analytics with Cloudflare Workers</li>
+<li>🔍 Search with Pagefind (static index)</li>
+<li>📰 RSS feed generation</li>
+</ul>
+<h3 id="long-term-3-6-months">Long-Term (3-6 months)</h3>
+<ul>
+<li>🌍 Multi-language support (i18n)</li>
+<li>📧 Newsletter integration</li>
+<li>🖼️ Image optimization pipeline</li>
+<li>🤖 Additional AI agents (security alerts, hardware reviews)</li>
+</ul>
+<hr>
+<h2 id="key-learnings">Key Learnings</h2>
+<h3 id="architecture-decisions">Architecture Decisions</h3>
+<ol>
+<li><strong>Monorepo over multi-repo</strong>: Shared dependencies, unified tooling</li>
+<li><strong>TypeScript ESM</strong>: Modern standard, but requires <code>.js</code> extensions in imports</li>
+<li><strong>GitHub Secrets over SOPS</strong>: Simpler for GitHub-first workflow</li>
+<li><strong>Single workflow file</strong>: Easier to maintain than multiple workflows</li>
+<li><strong>Content Collections</strong>: Type safety prevents runtime errors</li>
+</ol>
+<h3 id="ai-integration">AI Integration</h3>
+<ol>
+<li><strong>Always strip code blocks</strong>: LLMs love wrapping JSON in markdown</li>
+<li><strong>Pass existing context</strong>: Prevents duplicate perspectives</li>
+<li><strong>Structured prompts</strong>: JSON schema → predictable output</li>
+<li><strong>Tiered fallback</strong>: 99.9% uptime with cost optimization</li>
+<li><strong>Rate limiting</strong>: Better safe than sorry (5s delay works)</li>
+</ol>
+<h3 id="deployment">Deployment</h3>
+<ol>
+<li><strong>Base path handling</strong>: Environment variables > hardcoded values</li>
+<li><strong>.nojekyll is critical</strong>: Jekyll breaks modern web apps</li>
+<li><strong>CNAME in docs/</strong>: Required for custom domains</li>
+<li><strong>Working directory matters</strong>: Always run from workspace root</li>
+<li><strong>Single commit strategy</strong>: Simplifies git history</li>
+</ol>
+<hr>
+<h2 id="project-stats-current">Project Stats (Current)</h2>
+<ul>
+<li><strong>Total Files</strong>: 85+ (excluding node_modules)</li>
+<li><strong>TypeScript LOC</strong>: ~3,200 lines</li>
+<li><strong>Configuration</strong>: 2 YAML files (agents, secrets)</li>
+<li><strong>Content</strong>: 4 blog posts (1 manual, 3 AI-generated)</li>
+<li><strong>Uptime</strong>: 100% (GitHub Actions handles everything)</li>
+<li><strong>Cost</strong>: $0.10/month (AI only)</li>
+</ul>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p>Want to build your own AI-powered blog? Everything is open source:</p>
+<ul>
+<li><strong>Repository</strong>: <a href="https://github.com/deepak4395/personalBlog">github.com/deepak4395/personalBlog</a></li>
+<li><strong>Live Site</strong>: <a href="https://blog.sarcasticrobo.online">blog.sarcasticrobo.online</a></li>
+<li><strong>Documentation</strong>: See <code>DOCUMENTATION.md</code> for complete setup guide</li>
+</ul>
+<p><strong>What You’ll Need</strong>:</p>
+<ol>
+<li>GitHub account (free)</li>
+<li>Gemini API key (free tier available)</li>
+<li>15 minutes to configure</li>
+<li>Zero hosting costs (GitHub Pages)</li>
+</ol>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project demonstrates that modern AI, automation, and web technologies can create a <strong>fully autonomous content platform</strong> with:</p>
+<ul>
+<li>✅ Zero manual intervention</li>
+<li>✅ Professional quality output</li>
+<li>✅ Negligible operating costs</li>
+<li>✅ Production-ready reliability</li>
+</ul>
+<p>The key was combining the right tools (Astro, TypeScript, GitHub Actions) with thoughtful architecture (monorepo, tiered AI, intelligent deduplication) and iterative problem-solving (navigation bugs, CSS loading, duplicate detection).</p>
+<p><strong>Most importantly</strong>: It actually works! The blog generates unique, analytical content daily, learns from existing posts, and deploys automatically. 🚀</p>
+<hr>
+<p><strong>Built with ❤️ and AI</strong> | <a href="https://profile.sarcasticrobo.online">Profile</a> | <a href="https://github.com/deepak4395/personalBlog">GitHub</a></p>
 <h3 id="what-we-built">What We Built</h3>
 <p>This is not just a blog - it’s a complete <strong>automated content pipeline</strong> that runs on GitHub’s infrastructure for free:</p>
 <ul>
@@ -22,8 +466,8 @@ Profile
 <li><strong>Automatic Publishing</strong>: Commits markdown files and rebuilds website via GitHub Actions</li>
 <li><strong>Zero-Cost Hosting</strong>: GitHub Pages serves the static site with custom styling</li>
 </ul>
-<h2 id="system-architecture">System Architecture</h2>
-<h3 id="frontend-stack">Frontend Stack</h3>
+<h2 id="system-architecture-1">System Architecture</h2>
+<h3 id="frontend-stack-1">Frontend Stack</h3>
 <ul>
 <li><strong>Framework</strong>: Astro 4.16.19 (static site generation)</li>
 <li><strong>Styling</strong>: Tailwind CSS with custom blog content classes</li>
@@ -71,14 +515,14 @@ Profile
 <li><strong>Commit &#x26; Push</strong>: Commits both <code>.md</code> sources and HTML to repository</li>
 <li><strong>Deploy</strong>: GitHub Pages auto-deploys from <code>docs/</code> folder</li>
 </ol>
-<h2 id="technical-challenges-solved">Technical Challenges Solved</h2>
-<h3 id="1-working-directory-issues">1. Working Directory Issues</h3>
+<h2 id="technical-challenges-solved-1">Technical Challenges Solved</h2>
+<h3 id="1-working-directory-issues-1">1. Working Directory Issues</h3>
 <p><strong>Problem</strong>: Agent was saving files to <code>packages/scheduler/website/</code> instead of workspace root.</p>
 <p><strong>Solution</strong>: Changed workflow to run CLI from workspace root using <code>node packages/scheduler/dist/cli.js</code> instead of pnpm scripts.</p>
-<h3 id="2-css-not-loading-on-github-pages">2. CSS Not Loading on GitHub Pages</h3>
+<h3 id="2-css-not-loading-on-github-pages-1">2. CSS Not Loading on GitHub Pages</h3>
 <p><strong>Problem</strong>: Tailwind CSS files in <code>_astro/</code> folder were ignored by Jekyll.</p>
 <p><strong>Solution</strong>: Created <code>.nojekyll</code> file in <code>docs/</code> to disable Jekyll processing.</p>
-<h3 id="3-navigation-links-broken">3. Navigation Links Broken</h3>
+<h3 id="3-navigation-links-broken-1">3. Navigation Links Broken</h3>
 <p><strong>Problem</strong>: Links missing <code>/</code> between base path and routes (e.g., <code>/personalBlognews</code> instead of <code>/personalBlog/news</code>).</p>
 <p><strong>Solution</strong>: Used <code>import.meta.env.BASE_URL</code> with explicit slashes in all navigation links.</p>
 <h3 id="4-ai-json-parsing-failures">4. AI JSON Parsing Failures</h3>
@@ -104,7 +548,7 @@ Profile
 <p><strong>Problem</strong>: Tailwind prose classes not rendering properly.</p>
 <p><strong>Solution</strong>: Created custom <code>.blog-content</code> CSS classes with explicit styling for headings, lists, code blocks, and typography.</p>
 <h2 id="features-implemented">Features Implemented</h2>
-<h3 id="content-generation">Content Generation</h3>
+<h3 id="content-generation-1">Content Generation</h3>
 <ul>
 <li>✅ Fetches 281+ articles daily from multiple sources</li>
 <li>✅ Ranks by embedded systems relevance</li>
@@ -191,7 +635,7 @@ Profile
 <li><strong>Build Time</strong>: ~60 seconds</li>
 <li><strong>Deploy Time</strong>: ~2 minutes</li>
 </ul>
-<h2 id="try-it-yourself">Try It Yourself</h2>
+<h2 id="try-it-yourself-1">Try It Yourself</h2>
 <p>Want to build your own AI blog? Check out:</p>
 <ul>
 <li><strong>Repository</strong>: <a href="https://github.com/deepak4395/personalBlog">github.com/deepak4395/personalBlog</a></li>
@@ -199,7 +643,7 @@ Profile
 <li><strong>Live Site</strong>: <a href="https://deepak4395.github.io/personalBlog">deepak4395.github.io/personalBlog</a></li>
 </ul>
 <p>The entire system is open source and ready to deploy in under 15 minutes with just a Gemini API key!</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion-1">Conclusion</h2>
 <p>This project demonstrates the power of combining AI, automation, and modern web technologies. What started as a complex idea became a reality through systematic problem-solving, debugging, and iteration.</p>
 <p><strong>Key learnings</strong>: ESM imports require <code>.js</code> extensions, Jekyll ignores <code>_astro</code> folders, AI needs explicit JSON instructions, and deduplication requires URL checking, not just titles.</p>
 <p>The blog is now <strong>live, automated, and cost-free</strong> - a testament to what’s possible with GitHub Actions and AI in 2026! 🚀</p> <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg"> <h3 class="text-lg font-semibold mb-2">Sources:</h3> <ul class="list-disc list-inside space-y-1"> <li> <a href="https://github.com/deepak4395/personalBlog" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline"> personalBlog Repository - GitHub </a> </li> </ul> </div> </div> <!-- Enhanced Footer --> <footer class="mt-16 pt-8 border-t-2 border-gray-200 dark:border-gray-700"> <div class="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 mb-6"> <div class="flex items-start gap-3"> <svg class="w-6 h-6 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path> </svg> <div> <p class="text-sm font-semibold text-gray-900 dark:text-white mb-1">AI-Generated Content</p> <p class="text-sm text-gray-600 dark:text-gray-300">
