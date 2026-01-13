@@ -131,20 +131,17 @@ export default function BlogFilter({ posts, base }: BlogFilterProps) {
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => {
             // Construct proper URL path (handle both "/" and "/personalBlog" base paths)
-            const postUrl = base === '/' 
-              ? `/${post.data.category}/${post.slug}` 
-              : `${base}/${post.data.category}/${post.slug}`;
+            const postUrl = `${base === '/' ? '' : base}/${post.data.category}/${post.slug}`;
             
             return (
               <article
                 key={post.slug}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition cursor-pointer"
+                onClick={() => window.location.href = postUrl}
               >
-                <a href={postUrl}>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
-                    {post.data.title}
-                  </h3>
-                </a>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
+                  {post.data.title}
+                </h3>
 
               {/* Category Badge */}
               <div className="mb-3">
