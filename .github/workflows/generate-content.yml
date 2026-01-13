@@ -121,7 +121,12 @@ jobs:
       - name: Check for new content
         id: check-changes
         run: |
-          git diff --quiet website/src/content/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+          git add website/src/content/
+          if git diff --cached --quiet website/src/content/; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
 
       # Build website and prepare for deployment
       - name: Build website
