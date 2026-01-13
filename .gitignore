@@ -7,6 +7,9 @@ packages/*/dist/
 packages/*/build/
 .astro/
 
+# Docs folder contains built website for GitHub Pages deployment
+# docs/
+
 # Environment and secrets
 .env
 .env.*

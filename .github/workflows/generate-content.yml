@@ -135,11 +135,15 @@ jobs:
       # Build website and commit dist folder
       - name: Build website
         if: steps.check-changes.outputs.has_changes == 'true'
-        run: pnpm --filter website build
+        run: |
+          pnpm --filter website build
+          # Copy dist to docs for GitHub Pages
+          rm -rf docs
+          cp -r website/dist docs
 
       - name: Commit and push built website
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
-          git add website/dist/
+          git add docs/
           git commit -m "Build and deploy website"
           git push
