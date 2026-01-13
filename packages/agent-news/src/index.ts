@@ -1,4 +1,4 @@
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
 import { resolve, join } from 'path';
 import {
   configLoader,
@@ -95,8 +95,16 @@ export class NewsAggregatorAgent {
       // Step 4: Generate blog posts
       logger.info('Generating blog posts...');
       const tier = agentConfig.aiModel || 'tier1';
+      
+      // Filter out articles that already have posts
+      const filteredArticles = await this.filterExistingPosts(ranked, agentConfig.outputPath);
+      if (filteredArticles.length === 0) {
+        logger.info('All top articles already have blog posts');
+        return;
+      }
+      
       const generatedPosts = await this.blogGenerator.generatePosts(
-        ranked,
+        filteredArticles,
         agentConfig.config.maxArticlesPerRun,
         tier
       );
@@ -159,6 +167,59 @@ export class NewsAggregatorAgent {
 
     logger.info(`Fetched ${allArticles.length} total articles`);
     return allArticles;
+  }
+
+  /**
+   * Filter out articles that already have published posts
+   */
+  private async filterExistingPosts(
+    articles: ProcessedArticle[],
+    outputPath: string
+  ): Promise<ProcessedArticle[]> {
+    const config = configLoader.loadAgentsConfig();
+    const contentPath = resolve(process.cwd(), config.globalSettings.contentPath, outputPath);
+
+    if (!existsSync(contentPath)) {
+      return articles;
+    }
+
+    // Read existing post files
+    const existingFiles = readdirSync(contentPath).filter(file => file.endsWith('.md') && file !== '.gitkeep.md');
+    const existingTitles = new Set<string>();
+
+    for (const file of existingFiles) {
+      const filePath = join(contentPath, file);
+      const content = readFileSync(filePath, 'utf-8');
+      
+      // Extract title from frontmatter
+      const titleMatch = content.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+      if (titleMatch) {
+        existingTitles.add(titleMatch[1].toLowerCase().trim());
+      }
+    }
+
+    // Filter out articles with similar titles
+    const filtered = articles.filter(article => {
+      const normalizedTitle = article.title.toLowerCase().trim();
+      
+      // Check for exact match or significant overlap
+      for (const existingTitle of existingTitles) {
+        // If 70% of words match, consider it duplicate
+        const articleWords = normalizedTitle.split(/\s+/);
+        const existingWords = existingTitle.split(/\s+/);
+        const commonWords = articleWords.filter(word => existingWords.includes(word));
+        
+        if (commonWords.length / articleWords.length > 0.7) {
+          logger.info(`Skipping duplicate article: ${article.title} (matches existing post)`);
+          return false;
+        }
+      }
+      
+      return true;
+    });
+
+    logger.info(`Filtered ${articles.length - filtered.length} duplicate articles`);
+    return filtered;
   }
 
   /**
