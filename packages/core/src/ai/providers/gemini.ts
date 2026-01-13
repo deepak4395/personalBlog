@@ -69,7 +69,13 @@ export class GeminiProvider implements AIProvider {
       };
     } catch (error: any) {
       logger.error('Gemini generation failed:', error);
-      throw new Error(`Gemini API error: ${error.message}`);
+      logger.error('Error details:', {
+        message: error.message,
+        status: error.status,
+        statusText: error.statusText,
+        stack: error.stack,
+      });
+      throw new Error(`Gemini API error: ${error.message || 'Unknown error'}`);
     }
   }
 }
