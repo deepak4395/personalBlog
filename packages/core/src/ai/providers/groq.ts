@@ -1,6 +1,6 @@
 import Groq from 'groq-sdk';
-import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from '';
-import { logger } from '';
+import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from '../types.js';
+import { logger } from '../../utils/logger.js';
 
 /**
  * Groq AI Provider

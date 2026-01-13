@@ -1,4 +1,4 @@
-import pino from 'pino';
+import { pino as pinoLogger } from 'pino';
 
 /**
  * Logger utility using Pino
@@ -6,19 +6,7 @@ import pino from 'pino';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-export const logger = pino.default ? pino.default({
-  level: process.env.LOG_LEVEL || 'info',
-  transport: isDevelopment
-    ? {
-        target: 'pino-pretty',
-        options: {
-          colorize: true,
-          translateTime: 'HH:MM:ss',
-          ignore: 'pid,hostname',
-        },
-      }
-    : undefined,
-}) : pino({
+export const logger = pinoLogger({
   level: process.env.LOG_LEVEL || 'info',
   transport: isDevelopment
     ? {

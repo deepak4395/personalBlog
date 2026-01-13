@@ -2,8 +2,8 @@ import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import { parse } from 'yaml';
 import { execSync } from 'child_process';
-import { AgentsConfigSchema, SecretsSchema, AgentsConfig, Secrets } from '';
-import { logger } from '';
+import { AgentsConfigSchema, SecretsSchema, AgentsConfig, Secrets } from './schemas.js';
+import { logger } from '../utils/logger.js';
 
 /**
  * Configuration Loader

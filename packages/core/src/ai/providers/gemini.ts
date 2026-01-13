@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from './types';
-import { logger } from '../utils/logger';
+import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from '../types.js';
+import { logger } from '../../utils/logger.js';
 
 /**
  * Google Gemini AI Provider
