@@ -140,11 +140,11 @@ jobs:
 
       - name: Check for new content
         id: check-changes
-        ruls -la website/src/content/bhagavad-gita/ || echo "Bhagavad Gita directory is empty or doesn't exist"
-          n: |
+        run: |
           echo "Checking for new content files..."
           ls -la website/src/content/news/ || echo "News directory is empty or doesn't exist"
           ls -la website/src/content/tutorials/ || echo "Tutorials directory is empty or doesn't exist"
+          ls -la website/src/content/bhagavad-gita/ || echo "Bhagavad Gita directory is empty or doesn't exist"
           
           git add website/src/content/
           
