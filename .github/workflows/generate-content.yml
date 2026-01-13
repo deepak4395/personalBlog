@@ -114,7 +114,7 @@ jobs:
           elif [ "${{ github.event.schedule }}" = "0 7 * * *" ]; then
             echo "agent=bhagavad-gita" >> $GITHUB_OUTPUT
           else
-            echo "agent=all" >> $GITHUB_OUTPUT
+            echo "agent=bhagavad-gita" >> $GITHUB_OUTPUT
           fi
 
       - name: Run AI agents
