@@ -206,7 +206,11 @@ export class NewsAggregatorAgent {
         // Validate
         const validation = validateMarkdown(markdown);
         if (!validation.valid) {
-          logger.error(`Invalid markdown for ${post.title}:`, validation.errors);
+          logger.error(`Invalid markdown for ${post.title}:`);
+          validation.errors.forEach((err, idx) => {
+            logger.error(`  Error ${idx + 1}: ${err}`);
+          });
+          logger.error('First 500 chars of generated markdown:', markdown.substring(0, 500));
           continue;
         }
 
