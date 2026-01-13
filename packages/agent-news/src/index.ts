@@ -186,6 +186,7 @@ export class NewsAggregatorAgent {
     // Read existing post files
     const existingFiles = readdirSync(contentPath).filter(file => file.endsWith('.md') && file !== '.gitkeep.md');
     const existingTitles = new Set<string>();
+    const existingUrls = new Set<string>();
 
     for (const file of existingFiles) {
       const filePath = join(contentPath, file);
@@ -196,21 +197,33 @@ export class NewsAggregatorAgent {
       if (titleMatch) {
         existingTitles.add(titleMatch[1].toLowerCase().trim());
       }
+      
+      // Extract source URL from frontmatter
+      const urlMatch = content.match(/url:\s*["']?(.+?)["']?\s*$/m);
+      if (urlMatch) {
+        existingUrls.add(urlMatch[1].trim());
+      }
     }
 
-    // Filter out articles with similar titles
+    // Filter out articles with duplicate URLs or similar titles
     const filtered = articles.filter(article => {
+      // Check for exact URL match (most reliable)
+      if (existingUrls.has(article.url)) {
+        logger.info(`Skipping duplicate article: ${article.title} (same source URL already posted)`);
+        return false;
+      }
+      
       const normalizedTitle = article.title.toLowerCase().trim();
       
       // Check for exact match or significant overlap
       for (const existingTitle of existingTitles) {
         // If 70% of words match, consider it duplicate
-        const articleWords = normalizedTitle.split(/\s+/);
-        const existingWords = existingTitle.split(/\s+/);
+        const articleWords = normalizedTitle.split(/\s+/).filter(w => w.length > 3); // Ignore short words
+        const existingWords = existingTitle.split(/\s+/).filter(w => w.length > 3);
         const commonWords = articleWords.filter(word => existingWords.includes(word));
         
-        if (commonWords.length / articleWords.length > 0.7) {
-          logger.info(`Skipping duplicate article: ${article.title} (matches existing post)`);
+        if (articleWords.length > 0 && commonWords.length / articleWords.length > 0.6) {
+          logger.info(`Skipping duplicate article: ${article.title} (matches: ${existingTitle})`);
           return false;
         }
       }

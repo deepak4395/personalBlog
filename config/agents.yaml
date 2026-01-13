@@ -94,30 +94,30 @@ agents:
       
       prompts:
         systemPrompt: |
-          You are an expert embedded systems engineer and technical writer. 
-          Create concise, accurate news summaries for embedded systems professionals.
-          Focus on technical accuracy, practical implications, and relevance to embedded development.
+          You are an expert embedded systems engineer and technical writer.
+          Your job is to ANALYZE and INTERPRET news, not copy it.
+          Write original content that provides insights, implications, and practical takeaways.
           IMPORTANT: Respond ONLY with valid JSON. No markdown code blocks, no explanations outside JSON.
           The JSON must have: title, description, content (full markdown article), tags array, and category.
         
         userPromptTemplate: |
-          Analyze the following article and create a blog post:
+          Read this article and write an ORIGINAL analysis for embedded systems developers:
           
-          **Title:** {title}
-          **Source:** {source}
+          **Source Article:** {title}
+          **From:** {source}
           **URL:** {url}
-          **Content:** {content}
+          **Original Content:** {content}
           
-          Respond with ONLY valid JSON in this exact format (no markdown, no code blocks):
+          Respond with ONLY valid JSON (no ```json blocks):
           {
-            "title": "Engaging title (60-80 characters)",
-            "description": "SEO-friendly description (150-160 characters)",
-            "content": "Full markdown article following this structure:\n\n## Introduction\n\nOpening paragraph introducing the topic...\n\n### Key Point 1\n\n- **Bold feature**: Description\n- **Another feature**: Description\n\nParagraph with details...\n\n### Key Point 2\n\nMore content with proper formatting.\n\n## Conclusion\n\nWrap up the article.\n\nUse ## for main sections, ### for subsections. Include bullet lists with **bold** labels. Write 800-1200 words total.",
-            "tags": ["tag1", "tag2", "tag3", "tag4"],
+            "title": "Your own analytical title (not the source title)",
+            "description": "What this means for embedded developers (150-160 chars)",
+            "content": "Write 800-1200 words of ORIGINAL ANALYSIS following this structure:\n\n## Overview\n\nBriefly explain what happened and why it matters to embedded developers.\n\n## Technical Implications\n\n### For Hardware Developers\n- **Key point**: Your analysis\n- **Key point**: Your analysis\n\n### For Firmware Engineers\n- **Key point**: Your analysis\n- **Key point**: Your analysis\n\n## Real-World Applications\n\nHow can embedded developers use this? Provide 2-3 concrete examples.\n\n## Key Takeaways\n\n- **Lesson 1**: What developers should learn from this\n- **Lesson 2**: Actionable insight\n- **Lesson 3**: Future consideration\n\n## Conclusion\n\nSummarize the main impact and next steps.\n\nIMPORTANT: Do NOT copy text from the source. Provide YOUR analysis, interpretation, and insights. Focus on practical implications for embedded systems development.",
+            "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
             "category": "news"
           }
           
-          CRITICAL: The content field must contain complete markdown with ## headings, ### subheadings, bullet lists, and **bold** text. No placeholders!
+          Write original content analyzing the source, not summarizing it!
     
     # Agent-specific AI model override
     aiModel: "tier1"  # Use free Gemini for news
