@@ -45,7 +45,14 @@ export class BlogGenerator {
       // Parse JSON response
       let parsed;
       try {
-        parsed = JSON.parse(result.content);
+        // Remove markdown code blocks if present (```json ... ``` or ``` ... ```)
+        let jsonText = result.content.trim();
+        const codeBlockMatch = jsonText.match(/^```(?:json)?\s*\n?([\s\S]*?)\n?```$/);
+        if (codeBlockMatch) {
+          jsonText = codeBlockMatch[1].trim();
+        }
+        
+        parsed = JSON.parse(jsonText);
       } catch (parseError) {
         logger.error(`Failed to parse JSON response for ${article.title}`);
         logger.error('Raw response (first 1000 chars):', result.content.substring(0, 1000));
@@ -59,6 +66,14 @@ export class BlogGenerator {
         tags: Array.isArray(parsed.tags) ? parsed.tags : [],
         category: parsed.category || 'news',
       };
+
+      // Debug logging for empty content
+      if (!post.content || post.content.length < 100) {
+        logger.warn(`Generated content is too short for ${article.title}`);
+        logger.warn(`Parsed JSON keys: ${Object.keys(parsed).join(', ')}`);
+        logger.warn(`Content length: ${post.content.length}`);
+        logger.warn(`Content value: ${post.content.substring(0, 200)}`);
+      }
 
       logger.info(`Blog post generated: "${post.title}" (${result.usage?.totalTokens || 0} tokens)`);
 
