@@ -43,7 +43,14 @@ export class BlogGenerator {
       });
 
       // Parse JSON response
-      const parsed = JSON.parse(result.content);
+      let parsed;
+      try {
+        parsed = JSON.parse(result.content);
+      } catch (parseError) {
+        logger.error(`Failed to parse JSON response for ${article.title}`);
+        logger.error('Raw response (first 1000 chars):', result.content.substring(0, 1000));
+        throw new Error(`Invalid JSON response from AI: ${parseError instanceof Error ? parseError.message : 'Unknown error'}`);
+      }
 
       const post: GeneratedBlogPost = {
         title: parsed.title || article.title,
