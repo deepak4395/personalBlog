@@ -1,0 +1,29 @@
+{
+  "name": "@personalBlog/scheduler",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agents": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "run-agent": "node dist/cli.js run-agent",
+    "run-all": "node dist/cli.js run-all",
+    "list": "node dist/cli.js list",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@personalBlog/core": "workspace:*",
+    "@personalBlog/agent-news": "workspace:*",
+    "@personalBlog/agent-diy-tutorials": "workspace:*",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}

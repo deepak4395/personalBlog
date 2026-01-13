@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allNews = (await getCollection('news')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="News - Embedded Systems Blog">
+  <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+    Embedded Systems News
+  </h1>
+
+  <div class="grid gap-8">
+    {allNews.map((post) => (
+      <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+        <a href={`/news/${post.slug}`}>
+          <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 hover:text-primary-600 dark:hover:text-primary-400 transition">
+            {post.data.title}
+          </h2>
+        </a>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          {post.data.description}
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          {post.data.tags.map((tag) => (
+            <span class="text-sm px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-full">
+              #{tag}
+            </span>
+          ))}
+        </div>
+        <time class="text-sm text-gray-500 dark:text-gray-500">
+          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </article>
+    ))}
+  </div>
+</Layout>

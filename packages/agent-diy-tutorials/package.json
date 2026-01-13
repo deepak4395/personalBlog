@@ -1,0 +1,24 @@
+{
+  "name": "@personalBlog/agent-diy-tutorials",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@personalBlog/core": "workspace:*",
+    "axios": "^1.6.5",
+    "cheerio": "^1.0.0-rc.12",
+    "snoowrap": "^1.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}

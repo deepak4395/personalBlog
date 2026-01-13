@@ -1,0 +1,215 @@
+# Multi-Agent Configuration
+# Each agent is an independent content generator with its own sources and settings
+
+version: "1.0"
+
+globalSettings:
+  contentPath: "./website/src/content"
+  defaultRateLimit:
+    requestsPerMinute: 30
+    maxConcurrent: 3
+  
+  # AI Model Configuration (Tiered Free-to-Paid)
+  aiModels:
+    tier1:
+      provider: "google"
+      model: "gemini-2.5-flash"
+      temperature: 0.7
+      maxTokens: 8000
+      costPerRequest: 0  # Free tier
+    
+    tier2:
+      provider: "groq"
+      model: "llama-3.3-70b-versatile"
+      temperature: 0.7
+      maxTokens: 8000
+      costPerRequest: 0.003
+    
+    tier3:
+      provider: "openai"
+      model: "gpt-4o-mini"
+      temperature: 0.7
+      maxTokens: 8000
+      costPerRequest: 0.005
+  
+  # Fallback chain: tier1 -> tier2 -> tier3
+  fallbackChain: ["tier1", "tier2", "tier3"]
+  
+  # Budget limits
+  budget:
+    dailyLimit: 10  # USD
+    monthlyLimit: 50  # USD
+
+# Agent Definitions
+agents:
+  news-aggregator:
+    enabled: true
+    schedule: "0 6 * * *"  # Daily at 6 AM UTC
+    outputPath: "news"
+    category: "news"
+    
+    config:
+      maxArticlesPerRun: 5
+      deduplicationWindow: "7d"
+      minRelevanceScore: 0.7
+      
+      sources:
+        rss:
+          - url: "https://hackaday.com/feed/"
+            name: "Hackaday"
+            weight: 1.0
+            categories: ["embedded", "hardware", "diy"]
+          
+          - url: "https://www.embedded.com/feed/"
+            name: "Embedded.com"
+            weight: 1.2
+            categories: ["embedded", "professional"]
+          
+          - url: "https://www.cnx-software.com/feed/"
+            name: "CNX Software"
+            weight: 1.0
+            categories: ["embedded-linux", "sbc"]
+          
+          - url: "https://interrupt.memfault.com/feed.xml"
+            name: "Interrupt (Memfault)"
+            weight: 1.3
+            categories: ["embedded", "debugging", "technical"]
+          
+          - url: "https://www.eetimes.com/feed/"
+            name: "EE Times"
+            weight: 1.1
+            categories: ["industry", "hardware"]
+          
+          - url: "https://www.zephyrproject.org/feed/"
+            name: "Zephyr Project"
+            weight: 1.0
+            categories: ["rtos", "embedded"]
+        
+        apis:
+          hackernews:
+            enabled: true
+            keywords: ["embedded", "RTOS", "microcontroller", "STM32", "ESP32", "ARM Cortex"]
+            minScore: 50
+            maxResults: 10
+      
+      prompts:
+        systemPrompt: |
+          You are an expert embedded systems engineer and technical writer. 
+          Your task is to create concise, accurate news summaries for embedded systems professionals.
+          Focus on technical accuracy, practical implications, and relevance to embedded development.
+          Always cite sources and maintain objectivity.
+        
+        userPromptTemplate: |
+          Analyze the following article and create a blog post:
+          
+          **Title:** {title}
+          **Source:** {source}
+          **URL:** {url}
+          **Content:** {content}
+          
+          Generate a structured blog post with:
+          1. Engaging title (60-80 characters)
+          2. SEO description (150-160 characters)
+          3. Main content (800-1200 words) in markdown format
+          4. 3-5 relevant tags
+          5. Category classification
+          
+          Focus on: what's new, why it matters, technical implications, practical applications.
+    
+    # Agent-specific AI model override
+    aiModel: "tier1"  # Use free Gemini for news
+
+  diy-tutorials:
+    enabled: true
+    schedule: "0 8 * * 1"  # Mondays at 8 AM UTC
+    outputPath: "tutorials"
+    category: "tutorials"
+    
+    config:
+      topicsPerRun: 2
+      minSourcesPerTopic: 5
+      difficultyLevels: ["beginner", "intermediate", "advanced"]
+      
+      sources:
+        reddit:
+          subreddits:
+            - name: "embedded"
+              weight: 1.3
+              minUpvotes: 100
+            
+            - name: "AskElectronics"
+              weight: 1.2
+              minUpvotes: 80
+            
+            - name: "arduino"
+              weight: 1.0
+              minUpvotes: 100
+            
+            - name: "esp32"
+              weight: 1.1
+              minUpvotes: 80
+          
+          sortBy: "top"
+          timeFrame: "month"
+        
+        stackexchange:
+          sites:
+            - name: "electronics"
+              tags: ["microcontroller", "embedded", "firmware"]
+              minScore: 50
+            
+            - name: "arduino"
+              tags: ["programming", "sensors", "communication"]
+              minScore: 30
+        
+        forums:
+          - url: "https://esp32.com"
+            type: "discourse"
+            enabled: true
+            rateLimit: 30  # requests per minute
+      
+      prompts:
+        topicDiscovery: |
+          Analyze these forum discussions and identify trending DIY embedded systems project ideas.
+          Look for:
+          - Frequently asked questions
+          - Popular project types
+          - Common problem areas
+          - Emerging technologies
+          
+          Return a ranked list of tutorial topics that would benefit the community.
+        
+        tutorialOutline: |
+          Create a comprehensive tutorial outline for: {topic}
+          
+          Target audience: {difficulty}
+          
+          Structure:
+          1. Introduction (why this matters, prerequisites)
+          2. Components/Tools needed
+          3. Step-by-step implementation
+          4. Code examples with explanations
+          5. Testing and debugging
+          6. Common pitfalls and solutions
+          7. Next steps and extensions
+          
+          Make it practical, beginner-friendly, and include real code examples.
+        
+        tutorialWriter: |
+          Write a detailed tutorial section: {section}
+          
+          Context: {outline}
+          
+          Guidelines:
+          - Use clear, simple language
+          - Include code snippets with inline comments
+          - Add diagrams/circuit descriptions where helpful
+          - Explain the "why" not just the "how"
+          - Include debugging tips
+          - Format in markdown
+    
+    # Use better model for complex tutorial generation
+    aiModel: "tier2"  # Use Groq Llama 3.3 70B (cheap, good quality)
+
+# Reference to encrypted secrets file
+secretsFile: "./config/secrets.enc.yaml"

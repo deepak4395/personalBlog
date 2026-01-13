@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export const getStaticPaths = (async () => {
+  const tutorialEntries = await getCollection('tutorials');
+  return tutorialEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BlogPost {...entry.data}>
+  <div class="mb-6">
+    <span class={`px-3 py-1 rounded text-sm font-medium ${
+      entry.data.difficulty === 'beginner' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+      entry.data.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+      'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+    }`}>
+      {entry.data.difficulty.charAt(0).toUpperCase() + entry.data.difficulty.slice(1)} Level
+    </span>
+    {entry.data.series && (
+      <span class="ml-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-sm">
+        Series: {entry.data.series}
+      </span>
+    )}
+  </div>
+
+  <Content />
+  
+  {entry.data.sources && entry.data.sources.length > 0 && (
+    <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <h3 class="text-lg font-semibold mb-2">Based on research from:</h3>
+      <ul class="list-disc list-inside space-y-1">
+        {entry.data.sources.map((source) => (
+          <li>
+            <a 
+              href={source.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-primary-600 dark:text-primary-400 hover:underline"
+            >
+              {source.title} - {source.site}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</BlogPost>

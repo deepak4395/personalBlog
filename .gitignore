@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.astro/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# SOPS keys and unencrypted secrets
+keys.txt
+config/secrets.yaml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+logs/
+
+# Testing
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Agent outputs (committed separately)
+# website/src/content/news/*.md
+# website/src/content/tutorials/*.md

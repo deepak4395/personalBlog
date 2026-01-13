@@ -1,0 +1,131 @@
+name: Generate AI Content
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      agent:
+        description: 'Which agent to run (news, tutorials, all)'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - news
+          - tutorials
+  
+  # Scheduled triggers
+  schedule:
+    # News: Daily at 6 AM UTC
+    - cron: '0 6 * * *'
+    # Tutorials: Mondays at 8 AM UTC
+    - cron: '0 8 * * 1'
+
+jobs:
+  generate-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm -r run build
+
+      - name: Create secrets file from GitHub Secrets
+        run: |
+          cat > config/secrets.yaml << 'EOF'
+          ai:
+            google:
+              apiKey: "${{ secrets.GEMINI_API_KEY }}"
+              model: "gemini-2.0-flash-exp"
+            groq:
+              apiKey: "${{ secrets.GROQ_API_KEY }}"
+              model: "llama-3.3-70b-versatile"
+            openai:
+              apiKey: "${{ secrets.OPENAI_API_KEY }}"
+              model: "gpt-4o-mini"
+          
+          social:
+            reddit:
+              clientId: "${{ secrets.REDDIT_CLIENT_ID }}"
+              clientSecret: "${{ secrets.REDDIT_CLIENT_SECRET }}"
+              userAgent: "personalBlog/1.0"
+            stackexchange:
+              apiKey: "${{ secrets.STACKEXCHANGE_API_KEY }}"
+          
+          email:
+            formsubmit:
+              email: "${{ secrets.FORMSUBMIT_EMAIL }}"
+          EOF
+
+      - name: Determine which agent to run
+        id: determine-agent
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "agent=${{ github.event.inputs.agent }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
+            echo "agent=news" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "0 8 * * 1" ]; then
+            echo "agent=tutorials" >> $GITHUB_OUTPUT
+          else
+            echo "agent=all" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run AI agents
+        run: |
+          if [ "${{ steps.determine-agent.outputs.agent }}" = "all" ]; then
+            pnpm agents:all
+          else
+            pnpm agents:${{ steps.determine-agent.outputs.agent }}
+          fi
+        env:
+          SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
+
+      - name: Check for new content
+        id: check-changes
+        run: |
+          git diff --quiet website/src/content/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push new content
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "AI Content Bot"
+          git config user.email "bot@github.com"
+          git add website/src/content/
+          git commit -m "Add AI-generated content [skip ci]"
+          git push
+
+      - name: Trigger website deployment
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: deploy-website

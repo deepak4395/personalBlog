@@ -1,0 +1,35 @@
+{
+  "name": "personalblog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered multi-agent blog platform for embedded systems content",
+  "scripts": {
+    "dev": "pnpm --filter website dev",
+    "build": "pnpm --filter website build",
+    "preview": "pnpm --filter website preview",
+    "agents:news": "pnpm --filter scheduler run-agent news",
+    "agents:tutorials": "pnpm --filter scheduler run-agent tutorials",
+    "agents:all": "pnpm --filter scheduler run-all",
+    "agents:list": "pnpm --filter scheduler list",
+    "lint": "pnpm -r run lint",
+    "type-check": "pnpm -r run type-check"
+  },
+  "keywords": [
+    "ai",
+    "blog",
+    "embedded-systems",
+    "automation",
+    "content-generation"
+  ],
+  "author": "sarcasticrobo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

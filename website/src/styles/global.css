@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+
+  .prose h1 {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .prose h2 {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .prose h3 {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .prose a {
+    @apply text-primary-600 dark:text-primary-400 hover:underline;
+  }
+
+  .prose code {
+    @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+  }
+
+  .prose pre {
+    @apply bg-gray-900 dark:bg-gray-950 p-4 rounded-lg overflow-x-auto;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@personalBlog/agent-news",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@personalBlog/core": "workspace:*",
+    "feedparser": "^2.2.10",
+    "axios": "^1.6.5",
+    "cheerio": "^1.0.0-rc.12",
+    "date-fns": "^3.0.6"
+  },
+  "devDependencies": {
+    "@types/feedparser": "^2.2.8",
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}
