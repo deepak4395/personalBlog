@@ -15,34 +15,67 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
 
 <Layout title={title} description={description}>
   <article class="max-w-4xl mx-auto">
-    <header class="mb-8">
-      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+    <!-- Hero Header -->
+    <header class="mb-12 pb-8 border-b-2 border-primary-200 dark:border-primary-800">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
         {title}
       </h1>
       
-      <div class="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400 mb-4">
-        <time datetime={pubDate.toISOString()}>
-          {formattedDate}
-        </time>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+        {description}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-6">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time datetime={pubDate.toISOString()} class="font-medium">
+            {formattedDate}
+          </time>
+        </div>
       </div>
 
       <div class="flex flex-wrap gap-2">
         {tags.map((tag) => (
-          <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-full text-sm">
+          <span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800 text-primary-800 dark:text-primary-200 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
             #{tag}
           </span>
         ))}
       </div>
     </header>
 
-    <div class="prose prose-lg dark:prose-invert max-w-none">
+    <!-- Article Content with Better Typography -->
+    <div class="prose prose-lg md:prose-xl dark:prose-invert max-w-none
+                prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-gray-700
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
+                prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-semibold
+                prose-code:text-primary-600 dark:prose-code:text-primary-400 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
+                prose-pre:bg-gray-900 prose-pre:shadow-lg prose-pre:border prose-pre:border-gray-700
+                prose-ul:my-6 prose-li:my-2
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:italic
+                prose-img:rounded-lg prose-img:shadow-lg">
       <slot />
     </div>
 
-    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <p class="text-sm text-gray-600 dark:text-gray-400">
-        This content was generated using AI to aggregate and summarize the latest developments in embedded systems.
-      </p>
+    <!-- Enhanced Footer -->
+    <footer class="mt-16 pt-8 border-t-2 border-gray-200 dark:border-gray-700">
+      <div class="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 mb-6">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+          </svg>
+          <div>
+            <p class="text-sm font-semibold text-gray-900 dark:text-white mb-1">AI-Generated Content</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              This article was created using advanced AI to aggregate and summarize the latest developments in embedded systems, IoT, and hardware design.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
   </article>
 </Layout>

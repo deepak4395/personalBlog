@@ -49,7 +49,7 @@ agents:
     category: "news"
     
     config:
-      maxArticlesPerRun: 5
+      maxArticlesPerRun: 1
       deduplicationWindow: "7d"
       minRelevanceScore: 0.7
       
