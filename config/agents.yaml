@@ -13,7 +13,7 @@ globalSettings:
   aiModels:
     tier1:
       provider: "google"
-      model: "gemini-2.5-flash"
+      model: "gemini-2.0-flash-exp"
       temperature: 0.7
       maxTokens: 8000
       costPerRequest: 0  # Free tier
