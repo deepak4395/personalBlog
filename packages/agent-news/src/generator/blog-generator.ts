@@ -86,8 +86,8 @@ export class BlogGenerator {
         const post = await this.generatePost(article, tier);
         results.push({ article, post });
 
-        // Small delay between requests
-        await this.sleep(2000);
+        // Delay to avoid hitting 2K RPM limit (30 req/min = 2s delay)
+        await this.sleep(5000);
       } catch (error) {
         logger.error(`Skipping article ${article.title} due to generation error`);
       }
