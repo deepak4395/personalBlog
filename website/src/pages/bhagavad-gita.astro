@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL;
+const basePath = base === '/' ? '' : base;
 
 const allGita = (await getCollection('bhagavad-gita')).sort(
   (a, b) => {
@@ -65,7 +66,7 @@ const totalChapters = chapters.size;
         <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {shlokas.map((shloka) => (
             <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 hover:shadow-lg transition">
-              <a href={`${base}/bhagavad-gita/${shloka.slug}`} class="block">
+              <a href={`${basePath}/bhagavad-gita/${shloka.slug}`} class="block">
                 <div class="flex items-start justify-between mb-3">
                   <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
                     Verse {shloka.data.verse}

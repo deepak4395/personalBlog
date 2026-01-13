@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const base = import.meta.env.BASE_URL;
+const basePath = base === '/' ? '' : base;
 
 // Get all posts to find previous and next
 const allPosts = (await getCollection('bhagavad-gita')).sort((a, b) => {
@@ -112,7 +113,7 @@ if (post.data.verse >= chapterVerseCounts[post.data.chapter]) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {previousPost ? (
         <a 
-          href={`${base}/bhagavad-gita/${previousPost.slug}`}
+          href={`${basePath}/bhagavad-gita/${previousPost.slug}`}
           class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-lg transition border border-gray-200 dark:border-gray-700"
         >
           <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">← Previous</div>
@@ -131,7 +132,7 @@ if (post.data.verse >= chapterVerseCounts[post.data.chapter]) {
 
       {nextPost ? (
         <a 
-          href={`${base}/bhagavad-gita/${nextPost.slug}`}
+          href={`${basePath}/bhagavad-gita/${nextPost.slug}`}
           class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-lg transition border border-gray-200 dark:border-gray-700 text-right"
         >
           <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Next →</div>
@@ -161,7 +162,7 @@ if (post.data.verse >= chapterVerseCounts[post.data.chapter]) {
 
     <div class="mt-6 text-center">
       <a 
-        href={`${base}/bhagavad-gita`}
+        href={`${basePath}/bhagavad-gita`}
         class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
