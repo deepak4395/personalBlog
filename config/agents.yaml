@@ -95,9 +95,10 @@ agents:
       prompts:
         systemPrompt: |
           You are an expert embedded systems engineer and technical writer. 
-          Your task is to create concise, accurate news summaries for embedded systems professionals.
+          Create concise, accurate news summaries for embedded systems professionals.
           Focus on technical accuracy, practical implications, and relevance to embedded development.
-          Always cite sources and maintain objectivity.
+          IMPORTANT: Respond ONLY with valid JSON. No markdown code blocks, no explanations outside JSON.
+          The JSON must have: title, description, content (full markdown article), tags array, and category.
         
         userPromptTemplate: |
           Analyze the following article and create a blog post:
@@ -107,14 +108,16 @@ agents:
           **URL:** {url}
           **Content:** {content}
           
-          Generate a structured blog post with:
-          1. Engaging title (60-80 characters)
-          2. SEO description (150-160 characters)
-          3. Main content (800-1200 words) in markdown format
-          4. 3-5 relevant tags
-          5. Category classification
+          Respond with ONLY valid JSON in this exact format (no markdown, no code blocks):
+          {
+            "title": "Engaging title (60-80 characters)",
+            "description": "SEO-friendly description (150-160 characters)",
+            "content": "Full markdown content here with ## headings, paragraphs, lists, code blocks if needed (800-1200 words). Include technical details, practical applications, and why this matters to embedded developers.",
+            "tags": ["tag1", "tag2", "tag3"],
+            "category": "news"
+          }
           
-          Focus on: what's new, why it matters, technical implications, practical applications.
+          Important: The content field must be complete markdown text, not a placeholder. Write the full article.
     
     # Agent-specific AI model override
     aiModel: "tier1"  # Use free Gemini for news
