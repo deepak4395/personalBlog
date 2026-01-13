@@ -115,10 +115,13 @@ jobs:
       - name: Run AI agents
         run: |
           echo "Running agent: ${{ steps.determine-agent.outputs.agent }}"
+          cd /home/runner/work/personalBlog/personalBlog
           if [ "${{ steps.determine-agent.outputs.agent }}" = "all" ]; then
-            pnpm agents:all
+            node packages/scheduler/dist/cli.js run-all
+          elif [ "${{ steps.determine-agent.outputs.agent }}" = "news" ]; then
+            node packages/scheduler/dist/cli.js run-agent news-aggregator
           else
-            pnpm agents:${{ steps.determine-agent.outputs.agent }}
+            node packages/scheduler/dist/cli.js run-agent diy-tutorials
           fi
           echo "Agent execution completed"
           echo "Checking output directory..."

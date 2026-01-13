@@ -55,7 +55,8 @@ export class BlogGenerator {
         parsed = JSON.parse(jsonText);
       } catch (parseError) {
         logger.error(`Failed to parse JSON response for ${article.title}`);
-        logger.error('Raw response (first 1000 chars):', result.content.substring(0, 1000));
+        logger.error('Raw response (first 2000 chars):', result.content.substring(0, 2000));
+        logger.error('Parse error:', parseError instanceof Error ? parseError.message : 'Unknown error');
         throw new Error(`Invalid JSON response from AI: ${parseError instanceof Error ? parseError.message : 'Unknown error'}`);
       }
 
