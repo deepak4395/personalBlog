@@ -43,7 +43,7 @@ globalSettings:
 # Agent Definitions
 agents:
   news-aggregator:
-    enabled: true
+    enabled: false  # Paused
     schedule: "0 6 * * *"  # Daily at 6 AM UTC
     outputPath: "news"
     category: "news"
@@ -123,7 +123,7 @@ agents:
     aiModel: "tier1"  # Use free Gemini for news
 
   diy-tutorials:
-    enabled: true
+    enabled: false  # Paused
     schedule: "0 8 * * 1"  # Mondays at 8 AM UTC
     outputPath: "tutorials"
     category: "tutorials"
