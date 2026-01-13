@@ -110,11 +110,15 @@ jobs:
 
       - name: Run AI agents
         run: |
+          echo "Running agent: ${{ steps.determine-agent.outputs.agent }}"
           if [ "${{ steps.determine-agent.outputs.agent }}" = "all" ]; then
             pnpm agents:all
           else
             pnpm agents:${{ steps.determine-agent.outputs.agent }}
           fi
+          echo "Agent execution completed"
+          echo "Checking output directory..."
+          find website/src/content -type f -name "*.md" ! -name ".gitkeep.md" || echo "No markdown files found"
         env:
           SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
 
