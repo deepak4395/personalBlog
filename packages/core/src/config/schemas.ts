@@ -121,6 +121,16 @@ export const DIYAgentConfigSchema = BaseAgentConfigSchema.extend({
   }),
 });
 
+// Bhagavad Gita Agent Config
+export const BhagavadGitaAgentConfigSchema = BaseAgentConfigSchema.extend({
+  config: z.object({
+    prompts: z.object({
+      systemPrompt: z.string(),
+      userPromptTemplate: z.string(),
+    }),
+  }),
+});
+
 // Main Agents Configuration
 export const AgentsConfigSchema = z.object({
   version: z.string(),
@@ -128,6 +138,7 @@ export const AgentsConfigSchema = z.object({
   agents: z.object({
     'news-aggregator': NewsAgentConfigSchema,
     'diy-tutorials': DIYAgentConfigSchema,
+    'bhagavad-gita': BhagavadGitaAgentConfigSchema,
   }),
   secretsFile: z.string(),
 });
@@ -167,5 +178,6 @@ export type AIModelConfig = z.infer<typeof AIModelConfigSchema>;
 export type GlobalSettings = z.infer<typeof GlobalSettingsSchema>;
 export type NewsAgentConfig = z.infer<typeof NewsAgentConfigSchema>;
 export type DIYAgentConfig = z.infer<typeof DIYAgentConfigSchema>;
+export type BhagavadGitaAgentConfig = z.infer<typeof BhagavadGitaAgentConfigSchema>;
 export type AgentsConfig = z.infer<typeof AgentsConfigSchema>;
 export type Secrets = z.infer<typeof SecretsSchema>;
