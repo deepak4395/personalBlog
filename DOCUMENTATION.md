@@ -2,6 +2,8 @@
 
 **AI-Powered Multi-Agent Content Platform** | Live at: [blog.sarcasticrobo.online](https://blog.sarcasticrobo.online)
 
+**Project Status**: ✅ Production-Ready | **Daily Automated Posts**: ✅ Active | **Cost**: ~$0.10/month
+
 ---
 
 ## 📑 Table of Contents
@@ -28,11 +30,16 @@ A production-scale blog platform that uses AI agents to automatically generate h
 ### 🚀 Key Features
 
 - **Multi-Agent Architecture**: Independent AI agents for different content types
-  - **News Aggregator**: Fetches and analyzes latest embedded systems news
-  - **DIY Tutorials**: Generates educational content from forum discussions
+  - **News Aggregator**: Fetches 281+ articles from 7 sources, ranks by relevance, generates 1 analytical post daily
+  - **DIY Tutorials**: Generates educational content from Reddit and Stack Exchange (framework ready, currently disabled)
   - Easily extensible for new agent types
 
 - **GitHub-First Design**: All configuration via GitHub Secrets (no local SOPS needed)
+
+- **Intelligent Deduplication**: 
+  - Checks source URLs (exact match, 100% reliable)
+  - Analyzes title similarity (60% word overlap threshold)
+  - Passes existing blog context to AI for unique perspectives
 
 - **Cost-Optimized AI**: Tiered fallback system (Gemini 2.0 Flash paid tier → Groq → OpenAI)
 
@@ -41,20 +48,39 @@ A production-scale blog platform that uses AI agents to automatically generate h
   - TypeScript monorepo with pnpm workspaces
   - Tailwind CSS with custom blog styling
   - Content Collections for type-safe frontmatter
+  - React islands for client-side interactivity
 
 - **Automated Workflows**: GitHub Actions for scheduled content generation and deployment
 
 - **Custom Domain Support**: Environment variable-based configuration for dual domain deployment
+  - Primary: `blog.sarcasticrobo.online` (custom domain)
+  - Fallback: `deepak4395.github.io/personalBlog` (GitHub Pages)
+
+- **Unified Blog Experience**: Single homepage with tag filtering and search (no separate news/tutorials pages)
 
 ### 📊 Project Stats
 
 - **Total Packages**: 4 (core, agent-news, agent-diy-tutorials, scheduler)
 - **Dependencies**: 25+ npm packages
 - **TypeScript Files**: 30+ source files
-- **Lines of Code**: ~3000 LOC
+- **Lines of Code**: ~3,200 LOC
 - **Workflow Steps**: 12 automated steps
 - **Build Time**: ~60 seconds
 - **Deploy Time**: ~2 minutes
+- **Content Sources**: 7 (6 RSS feeds + Hacker News)
+- **Articles Processed**: 281+ per run
+- **Posts Generated**: 1 per day (configurable)
+- **AI Tokens**: ~1,500 tokens per post
+- **Current Posts**: 4 (1 manual + 3 AI-generated)
+
+### 🎯 Recent Improvements
+
+1. **Unified Blog View**: All posts (news + tutorials) on homepage with client-side filtering
+2. **Tag Search & Filter**: Instant filtering by tag search or dropdown
+3. **Context-Aware AI**: Existing blog titles and URLs passed to AI to prevent duplicates
+4. **Smart Deduplication**: URL matching + title similarity (60% threshold)
+5. **Dual Domain Support**: Single environment variable switches between custom domain and GitHub Pages
+6. **Navigation Cleanup**: Removed separate News/Tutorials links, focus on unified experience
 
 ---
 
