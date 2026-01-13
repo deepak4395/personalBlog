@@ -28,7 +28,7 @@ const tutorials = (await getCollection('tutorials')).sort(
       <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
         Latest News
       </h2>
-      <a href={`${base}news`} class="text-primary-600 dark:text-primary-400 hover:underline">
+      <a href={`${base}/news`} class="text-primary-600 dark:text-primary-400 hover:underline">
         View all →
       </a>
     </div>
@@ -36,7 +36,7 @@ const tutorials = (await getCollection('tutorials')).sort(
     <div class="grid md:grid-cols-3 gap-6">
       {news.map((post) => (
         <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-          <a href={`${base}news/${post.slug}`}>
+          <a href={`${base}/news/${post.slug}`}>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
               {post.data.title}
             </h3>
@@ -64,7 +64,7 @@ const tutorials = (await getCollection('tutorials')).sort(
       <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
         Latest Tutorials
       </h2>
-      <a href={`${base}tutorials`} class="text-primary-600 dark:text-primary-400 hover:underline">
+      <a href={`${base}/tutorials`} class="text-primary-600 dark:text-primary-400 hover:underline">
         View all →
       </a>
     </div>
@@ -72,7 +72,7 @@ const tutorials = (await getCollection('tutorials')).sort(
     <div class="grid md:grid-cols-3 gap-6">
       {tutorials.map((post) => (
         <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-          <a href={`${base}tutorials/${post.slug}`}>
+          <a href={`${base}/tutorials/${post.slug}`}>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition">
               {post.data.title}
             </h3>

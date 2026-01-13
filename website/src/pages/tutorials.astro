@@ -17,7 +17,7 @@ const allTutorials = (await getCollection('tutorials')).sort(
   <div class="grid gap-8">
     {allTutorials.map((post) => (
       <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
-        <a href={`${base}tutorials/${post.slug}`}>
+        <a href={`${base}/tutorials/${post.slug}`}>
           <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 hover:text-primary-600 dark:hover:text-primary-400 transition">
             {post.data.title}
           </h2>
