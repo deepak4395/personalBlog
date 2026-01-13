@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       agent:
-        description: 'Which agent to run (news, tutorials, all)'
+        description: 'Which agent to run (news, tutorials, bhagavad-gita, all)'
         required: true
         default: 'all'
         type: choice
@@ -18,6 +18,7 @@ on:
           - all
           - news
           - tutorials
+          - bhagavad-gita
   
   # Scheduled triggers
   schedule:
@@ -25,6 +26,8 @@ on:
     - cron: '0 6 * * *'
     # Tutorials: Mondays at 8 AM UTC
     - cron: '0 8 * * 1'
+    # Bhagavad Gita: Daily at 7 AM UTC
+    - cron: '0 7 * * *'
 
 jobs:
   generate-content:
@@ -108,6 +111,8 @@ jobs:
             echo "agent=news" >> $GITHUB_OUTPUT
           elif [ "${{ github.event.schedule }}" = "0 8 * * 1" ]; then
             echo "agent=tutorials" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "0 7 * * *" ]; then
+            echo "agent=bhagavad-gita" >> $GITHUB_OUTPUT
           else
             echo "agent=all" >> $GITHUB_OUTPUT
           fi
@@ -118,6 +123,10 @@ jobs:
           cd /home/runner/work/personalBlog/personalBlog
           if [ "${{ steps.determine-agent.outputs.agent }}" = "all" ]; then
             node packages/scheduler/dist/cli.js run-all
+          elif [ "${{ steps.determine-agent.outputs.agent }}" = "tutorials" ]; then
+            node packages/scheduler/dist/cli.js run-agent diy-tutorials
+          elif [ "${{ steps.determine-agent.outputs.agent }}" = "bhagavad-gita" ]; then
+            node packages/scheduler/dist/cli.js run-agent bhagavad-gita
           elif [ "${{ steps.determine-agent.outputs.agent }}" = "news" ]; then
             node packages/scheduler/dist/cli.js run-agent news-aggregator
           else
@@ -131,7 +140,8 @@ jobs:
 
       - name: Check for new content
         id: check-changes
-        run: |
+        ruls -la website/src/content/bhagavad-gita/ || echo "Bhagavad Gita directory is empty or doesn't exist"
+          n: |
           echo "Checking for new content files..."
           ls -la website/src/content/news/ || echo "News directory is empty or doesn't exist"
           ls -la website/src/content/tutorials/ || echo "Tutorials directory is empty or doesn't exist"

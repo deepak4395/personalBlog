@@ -40,7 +40,26 @@ const tutorialsCollection = defineCollection({
   }),
 });
 
+const bhagavadGitaCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    chapter: z.number(),
+    verse: z.number(),
+    chapterName: z.string(),
+    sanskrit: z.string(),
+    transliteration: z.string().optional(),
+    translation: z.string(),
+    tags: z.array(z.string()),
+    category: z.string(),
+    aiGenerated: z.boolean().default(true),
+  }),
+});
+
 export const collections = {
   news: newsCollection,
   tutorials: tutorialsCollection,
+  'bhagavad-gita': bhagavadGitaCollection,
 };

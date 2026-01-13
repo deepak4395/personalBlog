@@ -20,6 +20,7 @@
     "@personalBlog/core": "workspace:*",
     "@personalBlog/agent-news": "workspace:*",
     "@personalBlog/agent-diy-tutorials": "workspace:*",
+    "@personalBlog/agent-bhagavad-gita": "workspace:*",
     "commander": "^11.1.0"
   },
   "devDependencies": {

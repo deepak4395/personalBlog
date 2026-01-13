@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL;
+
+const allGita = (await getCollection('bhagavad-gita')).sort(
+  (a, b) => {
+    if (a.data.chapter !== b.data.chapter) {
+      return a.data.chapter - b.data.chapter;
+    }
+    return a.data.verse - b.data.verse;
+  }
+);
+
+// Group by chapter
+const chapters = new Map<number, typeof allGita>();
+for (const shloka of allGita) {
+  const chapter = shloka.data.chapter;
+  if (!chapters.has(chapter)) {
+    chapters.set(chapter, []);
+  }
+  chapters.get(chapter)!.push(shloka);
+}
+
+const totalShlokas = allGita.length;
+const totalChapters = chapters.size;
+---
+
+<Layout title="Bhagavad Gita - Sacred Wisdom">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+      Bhagavad Gita
+    </h1>
+    <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+      Sacred teachings from the Bhagavad Gita, one shloka at a time.
+    </p>
+    
+    <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6 mb-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+        <div>
+          <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{totalShlokas}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Shlokas Available</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{totalChapters}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Chapters</div>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{((totalShlokas / 700) * 100).toFixed(1)}%</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Complete</div>
+        </div>
+      </div>
+    </div>
+
+    {Array.from(chapters.entries()).map(([chapterNum, shlokas]) => (
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+          <span class="bg-primary-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+            {chapterNum}
+          </span>
+          {shlokas[0].data.chapterName}
+        </h2>
+        
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {shlokas.map((shloka) => (
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+              <a href={`${base}/bhagavad-gita/${shloka.slug}`} class="block">
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Verse {shloka.data.verse}
+                  </h3>
+                  <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded">
+                    {shloka.data.chapter}.{shloka.data.verse}
+                  </span>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                  {shloka.data.translation}
+                </p>
+                
+                <div class="text-xs text-primary-600 dark:text-primary-400 font-medium">
+                  Read more →
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    {allGita.length === 0 && (
+      <div class="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <p class="text-gray-600 dark:text-gray-400 text-lg">
+          Shlokas will be added daily. Check back soon!
+        </p>
+      </div>
+    )}
+  </div>
+</Layout>

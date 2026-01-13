@@ -1,5 +1,6 @@
 import { runNewsAgent } from '@personalBlog/agent-news';
 import { runDIYAgent } from '@personalBlog/agent-diy-tutorials';
+import { runBhagavadGitaAgent } from '@personalBlog/agent-bhagavad-gita';
 import { configLoader, logger } from '@personalBlog/core';
 
 /**
@@ -14,6 +15,8 @@ export const agentRegistry: Record<string, AgentRunner> = {
   'news': runNewsAgent, // Alias
   'diy-tutorials': runDIYAgent,
   'tutorials': runDIYAgent, // Alias
+  'bhagavad-gita': runBhagavadGitaAgent,
+  'gita': runBhagavadGitaAgent, // Alias
 };
 
 /**

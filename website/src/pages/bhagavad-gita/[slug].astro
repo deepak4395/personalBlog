@@ -1,0 +1,167 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  const gitaPosts = await getCollection('bhagavad-gita');
+  return gitaPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const base = import.meta.env.BASE_URL;
+
+// Get all posts to find previous and next
+const allPosts = (await getCollection('bhagavad-gita')).sort((a, b) => {
+  if (a.data.chapter !== b.data.chapter) {
+    return a.data.chapter - b.data.chapter;
+  }
+  return a.data.verse - b.data.verse;
+});
+
+const currentIndex = allPosts.findIndex(p => p.slug === post.slug);
+const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+// Calculate theoretical next shloka reference
+const theoreticalNext = {
+  chapter: post.data.chapter,
+  verse: post.data.verse + 1,
+};
+
+// Chapter verse counts
+const chapterVerseCounts: Record<number, number> = {
+  1: 47, 2: 72, 3: 43, 4: 42, 5: 29, 6: 47, 7: 30, 8: 28, 9: 34, 10: 42,
+  11: 55, 12: 20, 13: 35, 14: 27, 15: 20, 16: 24, 17: 28, 18: 78,
+};
+
+if (post.data.verse >= chapterVerseCounts[post.data.chapter]) {
+  theoreticalNext.chapter = post.data.chapter + 1;
+  theoreticalNext.verse = 1;
+}
+---
+
+<BlogPost
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  tags={post.data.tags}
+  category={post.data.category}
+>
+  <!-- Shloka Header Card -->
+  <div class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 rounded-lg p-8 mb-8 border border-orange-200 dark:border-orange-800">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="bg-orange-600 text-white text-lg font-bold rounded-full w-12 h-12 flex items-center justify-center">
+        {post.data.chapter}.{post.data.verse}
+      </span>
+      <div>
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+          Chapter {post.data.chapter}: {post.data.chapterName}
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Verse {post.data.verse}</p>
+      </div>
+    </div>
+
+    {post.data.sanskrit && (
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Sanskrit (Devanagari)</h3>
+          <p class="text-2xl text-gray-900 dark:text-white font-serif leading-relaxed">
+            {post.data.sanskrit}
+          </p>
+        </div>
+
+        {post.data.transliteration && (
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Transliteration (IAST)</h3>
+            <p class="text-lg text-gray-800 dark:text-gray-200 italic">
+              {post.data.transliteration}
+            </p>
+          </div>
+        )}
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Translation</h3>
+          <p class="text-lg text-gray-900 dark:text-white font-medium">
+            {post.data.translation}
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Main Content -->
+  <div class="prose prose-lg dark:prose-invert max-w-none">
+    <Content />
+  </div>
+
+  <!-- Navigation -->
+  <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Navigation</h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {previousPost ? (
+        <a 
+          href={`${base}/bhagavad-gita/${previousPost.slug}`}
+          class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-lg transition border border-gray-200 dark:border-gray-700"
+        >
+          <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">← Previous</div>
+          <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition">
+            Chapter {previousPost.data.chapter}, Verse {previousPost.data.verse}
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+            {previousPost.data.translation}
+          </div>
+        </a>
+      ) : (
+        <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 opacity-50">
+          <div class="text-sm text-gray-500 dark:text-gray-400">This is the first verse</div>
+        </div>
+      )}
+
+      {nextPost ? (
+        <a 
+          href={`${base}/bhagavad-gita/${nextPost.slug}`}
+          class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-lg transition border border-gray-200 dark:border-gray-700 text-right"
+        >
+          <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Next →</div>
+          <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition">
+            Chapter {nextPost.data.chapter}, Verse {nextPost.data.verse}
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+            {nextPost.data.translation}
+          </div>
+        </a>
+      ) : post.data.chapter < 18 || post.data.verse < chapterVerseCounts[post.data.chapter] ? (
+        <div class="p-6 bg-amber-50 dark:bg-amber-950/30 rounded-lg border border-amber-200 dark:border-amber-800 text-right">
+          <div class="text-sm text-amber-700 dark:text-amber-400 mb-2">Next →</div>
+          <div class="font-semibold text-gray-900 dark:text-white">
+            Chapter {theoreticalNext.chapter}, Verse {theoreticalNext.verse}
+          </div>
+          <div class="text-sm text-amber-600 dark:text-amber-400 mt-1 italic">
+            Coming soon... Check back daily for new verses! 🙏
+          </div>
+        </div>
+      ) : (
+        <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-right opacity-50">
+          <div class="text-sm text-gray-500 dark:text-gray-400">This is the final verse of the Bhagavad Gita</div>
+        </div>
+      )}
+    </div>
+
+    <div class="mt-6 text-center">
+      <a 
+        href={`${base}/bhagavad-gita`}
+        class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        View All Chapters
+      </a>
+    </div>
+  </div>
+</BlogPost>

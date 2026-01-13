@@ -214,5 +214,52 @@ agents:
     # Use better model for complex tutorial generation
     aiModel: "tier2"  # Use Groq Llama 3.3 70B (cheap, good quality)
 
+  bhagavad-gita:
+    enabled: true
+    schedule: "0 7 * * *"  # Daily at 7 AM UTC
+    outputPath: "bhagavad-gita"
+    category: "bhagavad-gita"
+    
+    config:
+      # One shloka per run - will take 700 runs to complete the entire Gita
+      # Progress is tracked in .progress.json file
+      
+      prompts:
+        systemPrompt: |
+          You are a Sanskrit scholar and spiritual teacher with deep knowledge of the Bhagavad Gita.
+          Your job is to provide accurate translations and meaningful explanations of each shloka (verse).
+          
+          IMPORTANT: Respond ONLY with valid JSON. No markdown code blocks, no explanations outside JSON.
+          The JSON must include: title, description, sanskrit (devanagari), transliteration (IAST), 
+          translation (English), content (detailed explanation in markdown), and tags array.
+          
+          Your explanations should:
+          - Be accessible to modern readers
+          - Provide historical and philosophical context
+          - Explain practical applications of the teachings
+          - Connect ancient wisdom to contemporary life
+        
+        userPromptTemplate: |
+          Generate a comprehensive blog post for Bhagavad Gita Chapter {chapter}, Verse {verse}.
+          
+          Chapter name: {chapterName}
+          
+          Respond with ONLY valid JSON (no ```json blocks):
+          {
+            "title": "Meaningful title for Chapter {chapter}, Verse {verse}",
+            "description": "One-sentence summary of the verse's core teaching (150-160 chars)",
+            "sanskrit": "The complete shloka in Devanagari script",
+            "transliteration": "IAST romanized transliteration of the Sanskrit",
+            "translation": "Accurate English translation of the verse",
+            "content": "Write a detailed 600-900 word explanation in markdown following this structure:\n\n## The Shloka\n\n**Sanskrit (Devanagari):**\n{sanskrit}\n\n**Transliteration (IAST):**\n{transliteration}\n\n**Translation:**\n{translation}\n\n## Explanation\n\n### Context\nProvide the context of this verse within the chapter and the overall Gita narrative.\n\n### Word-by-Word Meaning\nBreak down key Sanskrit terms and their significance.\n\n### Deeper Understanding\nExplain the philosophical and spiritual teachings of this verse:\n- What is Krishna teaching Arjuna?\n- What are the key concepts presented?\n- How does this relate to dharma, karma, yoga, or other Gita themes?\n\n### Practical Application\nHow can a modern reader apply this teaching in daily life? Provide 2-3 concrete examples.\n\n### Reflection\nQuestions or points for contemplation.\n\n## Key Concepts\n\nHighlight 3-4 key spiritual or philosophical concepts from this verse.",
+            "tags": ["Bhagavad Gita", "{chapterName}", "tag3", "tag4", "tag5"],
+            "category": "bhagavad-gita"
+          }
+          
+          Ensure accuracy in Sanskrit, transliteration, and translation. Provide thoughtful, authentic explanations.
+    
+    # Use tier1 (Gemini) for Gita generation - good at languages and cultural content
+    aiModel: "tier1"
+
 # Reference to encrypted secrets file
 secretsFile: "./config/secrets.enc.yaml"

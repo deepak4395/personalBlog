@@ -5,12 +5,13 @@ import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL;
 
-// Get all posts from both collections and combine them
+// Get all posts from all collections and combine them
 const news = await getCollection('news');
 const tutorials = await getCollection('tutorials');
+const gita = await getCollection('bhagavad-gita');
 
 // Combine and sort all posts by date (newest first)
-const allPosts = [...news, ...tutorials].sort(
+const allPosts = [...news, ...tutorials, ...gita].sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
