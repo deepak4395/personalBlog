@@ -123,8 +123,7 @@ export class BhagavadGitaAgent {
 
     // Generate filename: YYYY-MM-DD-chapter-X-verse-Y.md
     const date = new Date();
-    const dateStr = date.toISOString().split('T')[0];
-    const filename = `${dateStr}-chapter-${post.chapter}-verse-${post.verse}.md`;
+    const filename = `chapter-${post.chapter}-verse-${post.verse}.md`;
     const filepath = join(contentPath, filename);
 
     // Build markdown content with navigation

@@ -131,8 +131,8 @@ export class ProgressTracker {
     }
 
     const files = readdirSync(this.contentPath);
-    const shlokaPattern = new RegExp(`-chapter-${chapter}-verse-${verse}\\.md$`);
-    return files.some(file => shlokaPattern.test(file));
+    const shlokaFilename = `chapter-${chapter}-verse-${verse}.md`;
+    return files.includes(shlokaFilename);
   }
 
   /**
