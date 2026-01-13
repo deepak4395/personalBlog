@@ -1,8 +1,8 @@
-import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from './types.js';
-import { GeminiProvider, GroqProvider, OpenAIProvider } from './providers/index.js';
-import { configLoader, AIModelConfig } from '../config/index.js';
-import { logger } from '../utils/logger.js';
-import { retry } from '../utils/retry.js';
+import { AIProvider, AIGenerateOptions, AIGenerateResult, AIMessage } from '';
+import { GeminiProvider, GroqProvider, OpenAIProvider } from '';
+import { configLoader, AIModelConfig } from '';
+import { logger } from '';
+import { retry } from '';
 
 /**
  * AI Client with automatic fallback support

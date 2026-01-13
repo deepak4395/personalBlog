@@ -1,5 +1,5 @@
 import { stringify } from 'yaml';
-import { NewsPost, TutorialPost } from './schemas.js';
+import { NewsPost, TutorialPost } from '';
 
 /**
  * Markdown file generator with frontmatter
