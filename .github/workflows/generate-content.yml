@@ -151,6 +151,8 @@ jobs:
           # Copy dist to docs for GitHub Pages
           rm -rf docs
           cp -r website/dist docs
+          # Create .nojekyll to prevent GitHub Pages from ignoring _astro folder
+          touch docs/.nojekyll
 
       - name: Commit and push changes
         run: |
