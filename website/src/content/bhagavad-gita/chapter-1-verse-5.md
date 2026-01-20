@@ -32,9 +32,6 @@ verse: 5
 atra śūrā maheṣvāsā bhīmārjunasamā yudhi |
 yuyudhāno virāṭaśca drupadaśca mahārathaḥ || 5 ||
 
-**Translation:**
-Here are heroes, mighty archers, equal to Bhima and Arjuna in battle, Yuyudhana, Virata, and Drupada, the great chariot warriors.
-
 ## Explanation
 
 ### Context
@@ -76,13 +73,3 @@ While this verse describes ancient warriors, it offers insights applicable to mo
 *   **Preparation:** The necessity of preparing oneself mentally, emotionally, and practically for challenges.
 *   **Courage:** Facing formidable opponents requires courage and determination.
 *   **Perspective:** Recognizing the perspective from which information is presented (in this case, Duryodhana's through Sanjaya).
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 4](/bhagavad-gita/chapter-1-verse-4)
-
-[Next: Chapter 1, Verse 6](/bhagavad-gita/chapter-1-verse-6) →
-
-*Note: The next shloka will be available soon if not yet published.*

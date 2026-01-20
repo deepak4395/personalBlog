@@ -36,9 +36,6 @@ dhṛtarāṣṭra uvāca |
 dharmakṣetre kurukṣetre samavetā yuyutsavaḥ |
 māmakāḥ pāṇḍavāścaiva kimakurvata sañjaya ||1||
 
-**Translation:**
-Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu do when they had assembled on the holy field of Kurukshetra, desiring to fight?
-
 ## Explanation
 
 ### Context
@@ -83,11 +80,3 @@ This verse holds practical lessons for modern life:
 *   **Attachment:** Clinging to desires, possessions, or relationships, leading to suffering.
 *   **Self-Awareness:** The ability to recognize one's own thoughts, feelings, and motivations.
 *   **Kurukshetra:** The battlefield, symbolizing the inner struggle for self-mastery.
-
----
-
-## Navigation
-
-[Next: Chapter 1, Verse 2](/bhagavad-gita/chapter-1-verse-2) →
-
-*Note: The next shloka will be available soon if not yet published.*

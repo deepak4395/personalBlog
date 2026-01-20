@@ -32,9 +32,6 @@ verse: 4
 atra śūrā maheṣvāsā bhīmārjunasamā yudhi |
 yuyudhāno virāṭaśca drupadaśca mahārathaḥ ||4||
 
-**Translation:**
-Here are the heroes, mighty archers, equal to Bhima and Arjuna in battle; Yuyudhana, Virata, and Drupada, the great chariot warriors.
-
 ## Explanation
 
 ### Context
@@ -78,13 +75,3 @@ Krishna, through the Gita, emphasizes the importance of recognizing one's streng
 *   **Allies:** Recognizing and valuing supportive relationships.
 *   **Preparation:** Understanding the opposition to strategize effectively.
 *   **Dharma:** The subtle implication that righteousness brings strong allies.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 3](/bhagavad-gita/chapter-1-verse-3)
-
-[Next: Chapter 1, Verse 5](/bhagavad-gita/chapter-1-verse-5) →
-
-*Note: The next shloka will be available soon if not yet published.*

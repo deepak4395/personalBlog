@@ -32,9 +32,6 @@ verse: 7
 asmākaṁ tu viśiṣṭā ye tānnibodha dvijottama |
 nāyakā mama sainyasya saṁjñārthaṁ tānbravīmi te ||
 
-**Translation:**
-But, O best of the twice-born, hear also of the distinguished among our own, the leaders of my army, whom I shall name to you for your information.
-
 ## Explanation
 
 ### Context
@@ -77,13 +74,3 @@ This verse underscores a fundamental principle applicable beyond warfare: the im
 *   **Leadership Identification:** Identifying key leaders and their influence.
 *   **Dharma:** While not explicitly mentioned, understanding the strength of the opposition is crucial for Arjuna to fulfill his dharma as a warrior.
 *   **Self-Assessment:** Recognizing and understanding one's own capabilities in relation to others.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 6](/bhagavad-gita/chapter-1-verse-6)
-
-[Next: Chapter 1, Verse 8](/bhagavad-gita/chapter-1-verse-8) →
-
-*Note: The next shloka will be available soon if not yet published.*

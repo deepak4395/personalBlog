@@ -32,9 +32,6 @@ verse: 10
 aparyāptaṁ tad asmākaṁ balaṁ bhīṣmābhirakṣitam |
 paryāptaṁ tv idam eteṣāṁ balaṁ bhīmābhirakṣitam ||
 
-**Translation:**
-Unlimited is this army of ours, protected by Bhishma; limited is that army of theirs, protected by Bhima.
-
 ## Explanation
 
 ### Context
@@ -77,13 +74,3 @@ This verse offers several lessons for modern readers:
 *   **Inner Strength:** The significance of inner qualities like integrity and determination.
 *   **Self-Deception:** The danger of overconfidence and the need for self-awareness.
 *   **Dharma:** The role of righteousness and justice as a source of strength.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 9](/bhagavad-gita/chapter-1-verse-9)
-
-[Next: Chapter 1, Verse 11](/bhagavad-gita/chapter-1-verse-11) →
-
-*Note: The next shloka will be available soon if not yet published.*

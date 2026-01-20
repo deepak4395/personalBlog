@@ -32,9 +32,6 @@ verse: 9
 anye ca bahavaḥ śūrā mad-arthe tyakta-jīvitāḥ
 nānā-śastra-praharāṇāḥ sarve yuddha-viśāradāḥ
 
-**Translation:**
-And there are many other heroes who are prepared to lay down their lives for my sake. All of them are well equipped with different kinds of weapons, and all are experienced in warfare.
-
 ## Explanation
 
 ### Context
@@ -81,13 +78,3 @@ In contemporary life, we can draw several lessons from this verse:
 *   **Skill and Expertise:** The value of developing competence in any field of endeavor.
 *   **Motivation:** The significance of understanding and aligning our actions with noble intentions.
 *   **Attachment:** The potential dangers of blind devotion and the importance of detachment.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 8](/bhagavad-gita/chapter-1-verse-8)
-
-[Next: Chapter 1, Verse 10](/bhagavad-gita/chapter-1-verse-10) →
-
-*Note: The next shloka will be available soon if not yet published.*

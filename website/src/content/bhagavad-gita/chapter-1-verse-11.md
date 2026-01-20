@@ -32,9 +32,6 @@ verse: 11
 ayaneṣu ca sarveṣu yathābhāgamavasthitāḥ |
 bhīṣmam evābhirakṣantu bhavantaḥ sarva eva hi ||
 
-**Translation:**
-Now, all of you, remaining in your respective positions in the various divisions of the army, must give full support to Grandfather Bhishma.
-
 ## Explanation
 
 ### Context
@@ -79,13 +76,3 @@ This verse, although spoken in the context of war, holds lessons applicable to v
 *   **Unity:** The necessity of cohesion and collaboration to achieve a common goal.
 *   **Strategy:** The significance of planning and understanding one's role.
 *   **Responsibility:** The importance of fulfilling one's duties and contributing to the collective effort.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 10](/bhagavad-gita/chapter-1-verse-10)
-
-[Next: Chapter 1, Verse 12](/bhagavad-gita/chapter-1-verse-12) →
-
-*Note: The next shloka will be available soon if not yet published.*

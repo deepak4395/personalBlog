@@ -32,9 +32,6 @@ verse: 8
 bhavān bhīṣmaśca karṇaśca kṛpaśca samitiñjayaḥ |
 aśvatthāmā vikarṇaśca saumadattistathaiva ca ||8||
 
-**Translation:**
-You, Bhishma, Karna, Kripa, who is ever victorious in battle, Ashvatthama, Vikarna, and Saumadatti as well,
-
 ## Explanation
 
 ### Context
@@ -77,13 +74,3 @@ While we may not face literal battles like Arjuna, we often encounter challengin
 *   **Dharma (Duty):** The verse implicitly raises questions about dharma and the conflict between personal principles and obligations.
 *   **Strategic Assessment:** The verse highlights the importance of evaluating the strengths and weaknesses of both sides in any conflict or endeavor.
 *   **Moral Dilemma:** Vikarna's presence underscores the internal conflict that arises when one's sense of right and wrong clashes with familial or societal expectations.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 7](/bhagavad-gita/chapter-1-verse-7)
-
-[Next: Chapter 1, Verse 9](/bhagavad-gita/chapter-1-verse-9) →
-
-*Note: The next shloka will be available soon if not yet published.*

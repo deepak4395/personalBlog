@@ -32,9 +32,6 @@ verse: 12
 tasya sañjanayan harṣaṁ kuruvṛddhaḥ pitāmahaḥ |
 siṁhanādaṁ vinadyoccaiḥ śaṅkhaṁ dadhmau pratāpavān ||
 
-**Translation:**
-Then the mighty grandsire, the eldest of the Kurus, roaring like a lion, blew his conch loudly, giving joy to Duryodhana.
-
 ## Explanation
 
 ### Context
@@ -80,13 +77,3 @@ While we may not face literal battlefields, the principles in this verse resonat
 *   **Attachment:** The influence of attachments on decision-making.
 *   **Dharma:** The importance of acting in accordance with righteousness.
 *   **Ego:** The role of ego in fueling conflict and insecurity.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 11](/bhagavad-gita/chapter-1-verse-11)
-
-[Next: Chapter 1, Verse 13](/bhagavad-gita/chapter-1-verse-13) →
-
-*Note: The next shloka will be available soon if not yet published.*

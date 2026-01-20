@@ -32,9 +32,6 @@ verse: 3
 paśyaitāṁ pāṇḍuputrāṇāmācārya mahatīṁ camūm।
 vyūḍhāṁ drupadaputreṇa tava śiṣyeṇa dhīmatā ॥
 
-**Translation:**
-Behold, O teacher, this vast army of the sons of Pandu, arrayed by the son of Drupada, your intelligent disciple.
-
 ## Explanation
 
 ### Context
@@ -76,13 +73,3 @@ This verse offers several lessons applicable to modern life:
 *   **Karma:** The law of cause and effect. Dhrishtadyumna's destiny to kill Dronacharya as a consequence of past actions.
 *   **Awareness:** The importance of assessing situations accurately before acting.
 *   **Relationships:** The complexities of human connections and their influence on our actions.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 2](/bhagavad-gita/chapter-1-verse-2)
-
-[Next: Chapter 1, Verse 4](/bhagavad-gita/chapter-1-verse-4) →
-
-*Note: The next shloka will be available soon if not yet published.*

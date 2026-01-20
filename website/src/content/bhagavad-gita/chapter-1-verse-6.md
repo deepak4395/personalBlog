@@ -32,9 +32,6 @@ verse: 6
 yudhāmanyuś ca vikrānta uttamaujāś ca vīryavān |
 saubhadro draupadeyāś ca sarva eva mahārathāḥ ||
 
-**Translation:**
-Yudhamanyu, the mighty; Uttamauja, the heroic; Saubhadra (Abhimanyu, son of Subhadra); and the sons of Draupadi – all of them are great chariot warriors.
-
 ## Explanation
 
 ### Context
@@ -75,13 +72,3 @@ From a spiritual perspective, the verse reminds us of the diverse strengths and 
 *   **Heroism (Vīryavān):** The quality of being brave and noble in the face of challenges.
 *   **Teamwork:** The value of diverse skills and strengths in achieving common goals.
 *   **Dharma:** The underlying principle of righteousness and moral integrity associated with the Pandavas' cause.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 5](/bhagavad-gita/chapter-1-verse-5)
-
-[Next: Chapter 1, Verse 7](/bhagavad-gita/chapter-1-verse-7) →
-
-*Note: The next shloka will be available soon if not yet published.*

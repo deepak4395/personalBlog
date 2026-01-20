@@ -32,9 +32,6 @@ verse: 2
 dṛṣṭvā tu pāṇḍavānīkaṁ vyūḍhaṁ duryodhanastadā |
 ācāryam upasaṅgamya rājā vacanam abravīt || 2 ||
 
-**Translation:**
-But then, King Duryodhana, having seen the army of the Pandavas drawn up in battle array, approached his teacher and spoke these words.
-
 ## Explanation
 
 ### Context
@@ -78,13 +75,3 @@ Krishna is subtly contrasted here. Duryodhana seeks Drona's advice to maintain h
 *   **Dharma vs. Adharma:** Duryodhana's actions represent *adharma*, as he is driven by ego and a desire for power, contrasting with the righteous path of the Pandavas.
 *   **Guidance (Upadesha):** The act of seeking counsel is highlighted, emphasizing the importance of choosing wise mentors and discerning the quality of their advice.
 *   **Ego (Ahamkara):** Duryodhana's actions are rooted in ego, leading him to perceive the Pandavas as a threat to his kingdom and power.
-
----
-
-## Navigation
-
-← [Previous: Chapter 1, Verse 1](/bhagavad-gita/chapter-1-verse-1)
-
-[Next: Chapter 1, Verse 3](/bhagavad-gita/chapter-1-verse-3) →
-
-*Note: The next shloka will be available soon if not yet published.*

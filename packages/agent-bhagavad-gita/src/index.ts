@@ -126,24 +126,8 @@ export class BhagavadGitaAgent {
     const filename = `chapter-${post.chapter}-verse-${post.verse}.md`;
     const filepath = join(contentPath, filename);
 
-    // Build markdown content with navigation
-    let markdownContent = post.content;
-
-    // Add navigation section at the end
-    markdownContent += '\n\n---\n\n## Navigation\n\n';
-
-    if (post.previousShloka) {
-      const prevSlug = `/bhagavad-gita/chapter-${post.previousShloka.chapter}-verse-${post.previousShloka.verse}`;
-      markdownContent += `← [Previous: Chapter ${post.previousShloka.chapter}, Verse ${post.previousShloka.verse}](${prevSlug})\n\n`;
-    }
-
-    if (post.nextShloka) {
-      const nextSlug = `/bhagavad-gita/chapter-${post.nextShloka.chapter}-verse-${post.nextShloka.verse}`;
-      markdownContent += `[Next: Chapter ${post.nextShloka.chapter}, Verse ${post.nextShloka.verse}](${nextSlug}) →\n\n`;
-      markdownContent += `*Note: The next shloka will be available soon if not yet published.*\n`;
-    } else {
-      markdownContent += '*This is the final verse of the Bhagavad Gita.*\n';
-    }
+    // Use content as-is (navigation will be handled by the Astro component)
+    const markdownContent = post.content;
 
     // Build frontmatter
     const frontmatter = {
