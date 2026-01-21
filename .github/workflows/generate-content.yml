@@ -1,11 +1,6 @@
 name: Generate AI Content
 
 on:
-  # Run on every push (remove this after website is stable)
-  push:
-    branches:
-      - main
-  
   # Manual trigger
   workflow_dispatch:
     inputs:
@@ -81,13 +76,10 @@ jobs:
           ai:
             google:
               apiKey: "${{ secrets.GEMINI_API_KEY }}"
-              model: "gemini-2.0-flash-exp"
             groq:
               apiKey: "${{ secrets.GROQ_API_KEY }}"
-              model: "llama-3.3-70b-versatile"
             openai:
               apiKey: "${{ secrets.OPENAI_API_KEY }}"
-              model: "gpt-4o-mini"
           
           social:
             reddit:
@@ -118,6 +110,8 @@ jobs:
           fi
 
       - name: Run AI agents
+        id: run-agents
+        continue-on-error: true
         run: |
           echo "Running agent: ${{ steps.determine-agent.outputs.agent }}"
           cd /home/runner/work/personalBlog/personalBlog
@@ -137,6 +131,16 @@ jobs:
           find website/src/content -type f -name "*.md" ! -name ".gitkeep.md" || echo "No markdown files found"
         env:
           SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
+      
+      - name: Check agent run status
+        run: |
+          if [ "${{ steps.run-agents.outcome }}" = "failure" ]; then
+            echo "⚠️ Agent run failed (likely due to API rate limits). Continuing with website rebuild..."
+            echo "agent_failed=true" >> $GITHUB_ENV
+          else
+            echo "✓ Agent run succeeded"
+            echo "agent_failed=false" >> $GITHUB_ENV
+          fi
 
       - name: Check for new content
         id: check-changes
@@ -186,6 +190,8 @@ jobs:
           else
             if [ "${{ steps.check-changes.outputs.has_changes }}" = "true" ]; then
               git commit -m "Add AI-generated blog post (.md) and built website (HTML)"
+            elif [ "${{ env.agent_failed }}" = "true" ]; then
+              git commit -m "Rebuild website (agent run failed due to rate limits)"
             else
               git commit -m "Rebuild website"
             fi
