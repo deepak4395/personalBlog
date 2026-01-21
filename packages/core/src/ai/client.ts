@@ -88,6 +88,10 @@ export class AIClient {
             maxAttempts: 2,
             shouldRetry: (error) => {
               // Retry on rate limits (429) or temporary errors
+              // Check status code first (more reliable), then fall back to message matching
+              if (error.status === 429) {
+                return true;
+              }
               const errorStr = error.message?.toLowerCase() || '';
               return errorStr.includes('rate limit') || 
                      errorStr.includes('429') || 
