@@ -191,7 +191,7 @@ jobs:
             if [ "${{ steps.check-changes.outputs.has_changes }}" = "true" ]; then
               git commit -m "Add AI-generated blog post (.md) and built website (HTML)"
             elif [ "${{ env.agent_failed }}" = "true" ]; then
-              git commit -m "Rebuild website (agent run failed due to rate limits)"
+              git commit -m "Rebuild website (agent run failed)"
             else
               git commit -m "Rebuild website"
             fi
