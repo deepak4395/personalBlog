@@ -1,11 +1,15 @@
 # Dependencies
 node_modules/
 .pnpm-store/
+pnpm-lock.yaml
 
 # Build outputs (packages only, keep website dist for deployment)
 packages/*/dist/
 packages/*/build/
 .astro/
+*.tsbuildinfo
+website/dist/
+website/src/env.d.ts
 
 # Docs folder contains built website for GitHub Pages deployment
 # docs/
