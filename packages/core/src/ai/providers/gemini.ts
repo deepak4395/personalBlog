@@ -72,7 +72,15 @@ export class GeminiProvider implements AIProvider {
       logger.error(JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
       
       const errorMessage = error.message || error.toString() || 'Unknown error';
-      throw new Error(`Gemini API error: ${errorMessage}`);
+      const enhancedError: any = new Error(`Gemini API error: ${errorMessage}`);
+      
+      // Preserve status code if available for better error handling
+      if (error.status) {
+        enhancedError.status = error.status;
+        enhancedError.statusText = error.statusText;
+      }
+      
+      throw enhancedError;
     }
   }
 }

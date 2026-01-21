@@ -87,8 +87,12 @@ export class AIClient {
           {
             maxAttempts: 2,
             shouldRetry: (error) => {
-              // Retry on rate limits or temporary errors
-              return error.message?.includes('rate limit') || error.message?.includes('timeout');
+              // Retry on rate limits (429) or temporary errors
+              const errorStr = error.message?.toLowerCase() || '';
+              return errorStr.includes('rate limit') || 
+                     errorStr.includes('429') || 
+                     errorStr.includes('too many requests') ||
+                     errorStr.includes('timeout');
             },
           }
         );
