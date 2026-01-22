@@ -1,6 +1,11 @@
 name: Generate AI Content
 
 on:
+  # Run on every push to main branch
+  push:
+    branches:
+      - main
+  
   # Manual trigger
   workflow_dispatch:
     inputs:
