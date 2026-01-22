@@ -22,6 +22,7 @@ export interface GeneratedShlokaPost {
   content: string;
   chapter: number;
   verse: number;
+  chapterName: string;
   sanskrit: string;
   transliteration: string;
   translation: string;
