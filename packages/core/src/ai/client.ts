@@ -87,8 +87,19 @@ export class AIClient {
           {
             maxAttempts: 2,
             shouldRetry: (error) => {
-              // Retry on rate limits or temporary errors
-              return error.message?.includes('rate limit') || error.message?.includes('timeout');
+              // Retry on rate limits (429) or temporary errors
+              // Check status code first (more reliable), then fall back to message matching
+              if (error.status === 429) return true;
+              
+              const errorStr = error.message?.toLowerCase() || '';
+              const retryableErrors = [
+                'rate limit',
+                '429',
+                'too many requests',
+                'timeout'
+              ];
+              
+              return retryableErrors.some(pattern => errorStr.includes(pattern));
             },
           }
         );
