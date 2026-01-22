@@ -87,6 +87,7 @@ export class ShlokaGenerator {
           content: parsed.content || '',
           chapter: shlokaRef.chapter,
           verse: shlokaRef.verse,
+          chapterName: parsed.chapterName || chapterName,
           sanskrit: parsed.sanskrit || '',
           transliteration: parsed.transliteration || '',
           translation: parsed.translation || '',

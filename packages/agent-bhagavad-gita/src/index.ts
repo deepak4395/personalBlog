@@ -9,7 +9,7 @@ import {
 } from '@personalBlog/core';
 import { ShlokaGenerator } from './generator/index.js';
 import { ProgressTracker } from './tracker/index.js';
-import { GeneratedShlokaPost } from './types.js';
+import { GeneratedShlokaPost, CHAPTER_NAMES } from './types.js';
 
 /**
  * Bhagavad Gita Agent
@@ -134,6 +134,7 @@ export class BhagavadGitaAgent {
       pubDate: new Date().toISOString(),
       chapter: post.chapter,
       verse: post.verse,
+      chapterName: post.chapterName || CHAPTER_NAMES[post.chapter],
       sanskrit: post.sanskrit,
       transliteration: post.transliteration,
       translation: post.translation,
