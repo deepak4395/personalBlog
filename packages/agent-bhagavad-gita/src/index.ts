@@ -134,7 +134,7 @@ export class BhagavadGitaAgent {
       pubDate: new Date().toISOString(),
       chapter: post.chapter,
       verse: post.verse,
-      chapterName: post.chapterName || CHAPTER_NAMES[post.chapter],
+      chapterName: post.chapterName || CHAPTER_NAMES[post.chapter] || `Chapter ${post.chapter}`,
       sanskrit: post.sanskrit,
       transliteration: post.transliteration,
       translation: post.translation,
