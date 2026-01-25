@@ -221,6 +221,25 @@ agents:
 - Detailed explanations
 - Practical applications
 
+## 📱 LinkedIn Posting via GitHub Actions
+
+This repository includes a GitHub Actions workflow to post to LinkedIn automatically.
+
+### How to Use
+
+1. Go to the **Actions** tab in this repository
+2. Select **"Post to LinkedIn via Zapier"** workflow
+3. Click **"Run workflow"**
+4. Enter your post text (or use the default)
+5. Click **"Run workflow"** button
+
+### Setup (if not already done)
+
+1. Create a Zapier account and set up a Zap with:
+   - Trigger: Webhooks by Zapier → Catch Hook
+   - Action: LinkedIn → Create Share Update
+2. Add your Zapier webhook URL as a repository secret named `ZAPIER_WEBHOOK_URL`
+
 ## 🤝 Contributing
 
 This is a personal blog project, but suggestions and feedback are welcome!
