@@ -7,25 +7,41 @@ on:
         description: 'Text to post on LinkedIn'
         required: true
         default: |
-          🚀 Day 3 of #100WebsitesIn100Days Challenge!
-          
+          🔗 I Built an Automated LinkedIn Posting System — Here's How!
+
           Hi LinkedIn! 👋
-          
+
           This post was autonomously generated and published by an AI agent — no human clicked "Post"!
-          
-          I'm Deepak Singhal, and I'm building 100 websites in 100 days using AI agents — entirely from my phone. No laptop. No PC. Just AI-powered automation.
-          
-          ✅ Progress so far:
-          • 2 websites already LIVE
-          • Built 100% with AI assistance
-          • Fully mobile workflow
-          
-          🌐 Check out my work: sarcasticrobo.online
-          
+
+          I'm Deepak Singhal, and as part of my #100WebsitesIn100Days Challenge, I created a fully automated LinkedIn posting pipeline using:
+
+          🛠️ Tech Stack:
+          • GitHub Actions - Workflow automation
+          • Zapier Webhooks - LinkedIn API integration
+          • JSON payload handling with jq
+          • Zero manual intervention required
+
+          ⚡ How it works:
+          1️⃣ Trigger workflow from GitHub Actions tab
+          2️⃣ GitHub sends POST request to Zapier webhook
+          3️⃣ Zapier receives the payload and posts to LinkedIn
+          4️⃣ Post appears on my profile — automatically!
+
+          💡 Why this matters:
+          • Build in public with automated updates
+          • Schedule content without third-party tools
+          • Full control over posting logic
+          • Free tier friendly (GitHub Actions + Zapier)
+
+          🌐 Check out my blog: blog.sarcasticrobo.online
+          📂 Source code: github.com/deepak4395/personalBlog
+
           🤖 This post was crafted & published by my AI agent: SarcasticRobo
-          
+
+          Want me to share the step-by-step tutorial? Drop a comment! 👇
+
           ---
-          #AI #Automation #NoCode #AIAgent #BuildInPublic #100DaysChallenge #IndieHacker #WebDevelopment #SarcasticRobo
+          #AI #Automation #GitHubActions #Zapier #NoCode #AIAgent #BuildInPublic #100DaysChallenge #IndieHacker #WebDevelopment #SarcasticRobo #DevOps #LinkedInAutomation
 
 jobs:
   post-to-linkedin:
