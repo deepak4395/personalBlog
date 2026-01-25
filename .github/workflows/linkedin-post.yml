@@ -21,6 +21,8 @@ on:
 jobs:
   post-to-linkedin:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Post to LinkedIn via Zapier
         run: |
