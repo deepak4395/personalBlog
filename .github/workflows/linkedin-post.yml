@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Post to LinkedIn via Zapier
         run: |
-          curl -X POST "${{ secrets.ZAPIER_WEBHOOK_URL }}" \
+          curl -f --max-time 30 -X POST "${{ secrets.ZAPIER_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
             -d '{"text": ${{ toJSON(github.event.inputs.post_text) }}}'
           
