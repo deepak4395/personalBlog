@@ -1,0 +1,43 @@
+name: Post to LinkedIn via Zapier
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_text:
+        description: 'Text to post on LinkedIn'
+        required: true
+        default: |
+          🚀 Day 3 of #100WebsitesIn100Days Challenge!
+
+          Hi LinkedIn! 👋
+
+          This post was autonomously generated and published by an AI agent — no human clicked "Post"!
+
+          I'm Deepak Singhal, and I'm building 100 websites in 100 days using AI agents — entirely from my phone. No laptop. No PC. Just AI-powered automation.
+
+          ✅ Progress so far:
+          • 2 websites already LIVE
+          • Built 100% with AI assistance
+          • Fully mobile workflow
+
+          🌐 Check out my work: sarcasticrobo.online
+
+          🤖 This post was crafted & published by my AI agent: SarcasticRobo
+
+          ---
+          #AI #Automation #NoCode #AIAgent #BuildInPublic #100DaysChallenge #IndieHacker #WebDevelopment #SarcasticRobo
+
+jobs:
+  post-to-linkedin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Post to LinkedIn via Zapier
+        run: |
+          curl -f --max-time 30 -X POST "${{ secrets.ZAPIER_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{"text": ${{ toJSON(github.event.inputs.post_text) }}}'
+          
+      - name: Confirm post
+        run: echo "✅ LinkedIn post sent successfully via Zapier!"
