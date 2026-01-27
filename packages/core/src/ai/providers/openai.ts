@@ -47,19 +47,31 @@ export class OpenAIProvider implements AIProvider {
       });
 
       const content = response.choices[0]?.message?.content || '';
+      const usage = {
+        promptTokens: response.usage?.prompt_tokens || 0,
+        completionTokens: response.usage?.completion_tokens || 0,
+        totalTokens: response.usage?.total_tokens || 0,
+      };
+
+      logger.info(`OpenAI response received. Content length: ${content.length}, Usage: ${JSON.stringify(usage)}`);
+      if (content.length > 0) {
+        logger.info(`OpenAI response preview: ${content.substring(0, 200)}${content.length > 200 ? '...' : ''}`);
+      }
 
       return {
         content,
-        usage: {
-          promptTokens: response.usage?.prompt_tokens || 0,
-          completionTokens: response.usage?.completion_tokens || 0,
-          totalTokens: response.usage?.total_tokens || 0,
-        },
+        usage,
         model: modelName,
         provider: this.name,
       };
     } catch (error: any) {
-      logger.error('OpenAI generation failed:', error);
+      logger.error('OpenAI generation failed:', {
+        message: error.message,
+        status: error.status,
+        code: error.code,
+        type: error.type,
+        stack: error.stack,
+      });
       throw new Error(`OpenAI API error: ${error.message}`);
     }
   }
