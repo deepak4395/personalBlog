@@ -116,7 +116,7 @@ jobs:
 
       - name: Run AI agents
         id: run-agents
-        continue-on-error: true
+        continue-on-error: false
         run: |
           echo "Running agent: ${{ steps.determine-agent.outputs.agent }}"
           cd /home/runner/work/personalBlog/personalBlog
