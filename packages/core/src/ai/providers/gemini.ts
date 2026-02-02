@@ -5,6 +5,18 @@ import { logger } from '../../utils/logger.js';
 /**
  * Google Gemini AI Provider
  */
+
+interface GeminiModelInfo {
+  name: string;
+  supportedGenerationMethods?: string[];
+  [key: string]: any;
+}
+
+interface GeminiModelsListResponse {
+  models?: GeminiModelInfo[];
+  [key: string]: any;
+}
+
 export class GeminiProvider implements AIProvider {
   name = 'google';
   private client: GoogleGenerativeAI;
@@ -22,9 +34,15 @@ export class GeminiProvider implements AIProvider {
     try {
       // Use the models.list endpoint to get current models
       // https://generativelanguage.googleapis.com/v1beta/models
+      // Using header-based authentication for better security
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models?key=${this.apiKey}`,
-        { method: 'GET' }
+        'https://generativelanguage.googleapis.com/v1beta/models',
+        { 
+          method: 'GET',
+          headers: {
+            'x-goog-api-key': this.apiKey,
+          }
+        }
       );
       
       if (!response.ok) {
@@ -32,10 +50,10 @@ export class GeminiProvider implements AIProvider {
         return ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-3-flash', 'gemini-3-pro'];
       }
       
-      const data = await response.json() as any;
+      const data = await response.json() as GeminiModelsListResponse;
       const models = data.models
-        ?.filter((m: any) => m.supportedGenerationMethods?.includes('generateContent'))
-        ?.map((m: any) => m.name.replace('models/', '')) || [];
+        ?.filter((m) => m.supportedGenerationMethods?.includes('generateContent'))
+        ?.map((m) => m.name.replace('models/', '')) || [];
       
       logger.info(`Available Gemini models: ${models.join(', ')}`);
       return models;
