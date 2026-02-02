@@ -30,7 +30,7 @@ export class GeminiProvider implements AIProvider {
     options: AIGenerateOptions = {}
   ): Promise<AIGenerateResult> {
     try {
-      const modelName = options.model || 'gemini-2.0-flash-exp';
+      const modelName = options.model || 'gemini-1.5-flash';
       logger.info(`Generating with Gemini model: ${modelName}`);
 
       const model = this.client.getGenerativeModel({
