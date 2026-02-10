@@ -12,7 +12,11 @@
     "agents:all": "pnpm --filter scheduler run-all",
     "agents:list": "pnpm --filter scheduler list",
     "lint": "pnpm -r run lint",
-    "type-check": "pnpm -r run type-check"
+    "type-check": "pnpm -r run type-check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "keywords": [
     "ai",
@@ -25,8 +29,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.6",
+    "@vitest/coverage-v8": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
     "prettier": "^3.1.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
   },
   "engines": {
     "node": ">=20.0.0",
