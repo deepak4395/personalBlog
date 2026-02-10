@@ -115,8 +115,6 @@ describe('ShlokaGenerator', () => {
     });
 
     it('should throw error when required fields are missing', async () => {
-      vi.useFakeTimers();
-      
       const mockResponse = {
         content: JSON.stringify({
           title: 'Test',
@@ -127,23 +125,12 @@ describe('ShlokaGenerator', () => {
 
       mockAIClient.generate.mockResolvedValue(mockResponse);
 
-      // Start the generation (it will retry 3 times)
-      const generatePromise = generator.generatePost({ chapter: 1, verse: 1 }, null, null);
-      
-      // Wait for all retries (2^1 * 1000 + 2^2 * 1000 = 2000 + 4000 = 6000ms)
-      await vi.advanceTimersByTimeAsync(10000);
-      
-      // Wait a bit more for promise resolution
-      await vi.runAllTimersAsync();
-
-      await expect(generatePromise).rejects.toThrow('missing required fields');
-      
-      vi.useRealTimers();
-    });
+      await expect(
+        generator.generatePost({ chapter: 1, verse: 1 }, null, null)
+      ).rejects.toThrow('missing required fields');
+    }, 30000); // Increase timeout for retry logic
 
     it('should validate sanskrit field is present', async () => {
-      vi.useFakeTimers();
-      
       const mockResponse = {
         content: JSON.stringify({
           translation: 'Translation',
@@ -155,18 +142,12 @@ describe('ShlokaGenerator', () => {
 
       mockAIClient.generate.mockResolvedValue(mockResponse);
 
-      const generatePromise = generator.generatePost({ chapter: 1, verse: 1 }, null, null);
-      
-      await vi.runAllTimersAsync();
-
-      await expect(generatePromise).rejects.toThrow('sanskrit');
-      
-      vi.useRealTimers();
-    });
+      await expect(
+        generator.generatePost({ chapter: 1, verse: 1 }, null, null)
+      ).rejects.toThrow('sanskrit');
+    }, 30000);
 
     it('should validate translation field is present', async () => {
-      vi.useFakeTimers();
-      
       const mockResponse = {
         content: JSON.stringify({
           sanskrit: 'Sanskrit text',
@@ -178,18 +159,12 @@ describe('ShlokaGenerator', () => {
 
       mockAIClient.generate.mockResolvedValue(mockResponse);
 
-      const generatePromise = generator.generatePost({ chapter: 1, verse: 1 }, null, null);
-      
-      await vi.runAllTimersAsync();
-
-      await expect(generatePromise).rejects.toThrow('translation');
-      
-      vi.useRealTimers();
-    });
+      await expect(
+        generator.generatePost({ chapter: 1, verse: 1 }, null, null)
+      ).rejects.toThrow('translation');
+    }, 30000);
 
     it('should validate content field is present', async () => {
-      vi.useFakeTimers();
-      
       const mockResponse = {
         content: JSON.stringify({
           sanskrit: 'Sanskrit text',
@@ -201,14 +176,10 @@ describe('ShlokaGenerator', () => {
 
       mockAIClient.generate.mockResolvedValue(mockResponse);
 
-      const generatePromise = generator.generatePost({ chapter: 1, verse: 1 }, null, null);
-      
-      await vi.runAllTimersAsync();
-
-      await expect(generatePromise).rejects.toThrow('content');
-      
-      vi.useRealTimers();
-    });
+      await expect(
+        generator.generatePost({ chapter: 1, verse: 1 }, null, null)
+      ).rejects.toThrow('content');
+    }, 30000);
 
     it('should use defaults for optional fields', async () => {
       const mockResponse = {
